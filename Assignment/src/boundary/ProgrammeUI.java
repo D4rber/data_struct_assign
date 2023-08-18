@@ -13,22 +13,25 @@ public class ProgrammeUI{
     private ProgrammeManagement programmeManagement = new ProgrammeManagement();
 
     public void Menu(){
-        System.out.println("Welcome to Programme Management");
-        System.out.println("========================================");
-        System.out.println("1. Add new Programme");
-        System.out.println("2. Remove Programme");
-        System.out.println("3. Find Programme");
-        System.out.println("4. Amend Programme Detail");
-        System.out.println("5. List all Programme");
-        System.out.println("6. Add Tutorial Group");
-        System.out.println("7. Remove Tutorial Group");
-        System.out.println("8. List all Tutorial Group");
-        System.out.println("9. Generate Report");
-        System.out.println("\nPlease input >");
-        
-        int choice = scanner.nextInt();
+        do{
+            int choice = 0;
 
-         switch(choice){
+            System.out.println("Welcome to Programme Management");
+            System.out.println("========================================");
+            System.out.println("1. Add new Programme");
+            System.out.println("2. Remove Programme");
+            System.out.println("3. Find Programme");
+            System.out.println("4. Amend Programme Detail");
+            System.out.println("5. List all Programme");
+            System.out.println("6. Add Tutorial Group");
+            System.out.println("7. Remove Tutorial Group");
+            System.out.println("8. List all Tutorial Group");
+            System.out.println("9. Generate Report");
+            System.out.println("\nPlease input >");
+        
+            int choice = scanner.nextInt();
+
+            switch(choice){
                 case 1:
                     programmeManagement.addProgramme();
                     break;
@@ -56,10 +59,16 @@ public class ProgrammeUI{
                 case 9:
                     programmeManagement.generateReports();
                     break;
+                case 0:
+                    System.out.println("Exit System");
+                    break;
                 default:
-                    System.out.println("Invalid input");
+                    System.out.println("Invalid input, please try again");
                     break; 
-       }
+            }
+        }while(choice != 0);
+    }
+}
 
     // public String inputProgrammeCode(){
     //     System.out.println("Enter Programme Code: ");
@@ -84,4 +93,4 @@ public class ProgrammeUI{
     //     String tutorialGroup = scanner.nextLine();
     //     return tutorialGroup;
     // }
-    }
+    
