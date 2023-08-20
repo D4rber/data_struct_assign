@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package control;
+package boundary;
 
-import entity.Programme;
 import java.util.Scanner;
+import control.ProgrammeManagement;
 
 public class ProgrammeUI{
     private Scanner scanner = new Scanner(System.in);
     private ProgrammeManagement programmeManagement = new ProgrammeManagement();
 
     public void Menu(){
+        int choice = 0;
         do{
-            int choice = 0;
-
             System.out.println("Welcome to Programme Management");
             System.out.println("========================================");
             System.out.println("1. Add new Programme");
@@ -29,7 +28,7 @@ public class ProgrammeUI{
             System.out.println("9. Generate Report");
             System.out.println("\nPlease input >");
         
-            int choice = scanner.nextInt();
+            choice = scanner.nextInt();
 
             switch(choice){
                 case 1:
@@ -45,7 +44,7 @@ public class ProgrammeUI{
                     programmeManagement.amendProgrammeDetail();
                     break;
                 case 5:
-                    programmeManagement.listAllProducts();
+                    programmeManagement.listAllProgramme();
                     break;
                 case 6:
                     programmeManagement.addTutorialGroup();
@@ -67,6 +66,10 @@ public class ProgrammeUI{
                     break; 
             }
         }while(choice != 0);
+    }
+    
+    public static void main(String args[]){
+        new ProgrammeUI().Menu();
     }
 }
 

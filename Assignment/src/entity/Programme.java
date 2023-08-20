@@ -5,7 +5,8 @@
  */
 package entity;
 
-import java.util.ArrayList;
+import adt.ArrayList;
+import adt.ListInterface;
 
 /**
  *
@@ -15,9 +16,20 @@ public class Programme {
     private String programmeCode;
     private String programmeName;
     private int creditHours;
-    private ArrayList<String> tutorialGroup;
+    private ListInterface<TutorialGroup> tutorialGroup;
 
+    
 public Programme(String programmeCode, String programmeName, int creditHours){
+    this.programmeCode = programmeCode;
+    this.programmeName = programmeName;
+    this.creditHours = creditHours;
+}
+
+public Programme(String programmeCode){
+    this.programmeCode = programmeCode;
+}
+
+public Programme(String programmeCode, String programmeName, int creditHours, ListInterface<TutorialGroup> tutorialGroup){
     this.programmeCode = programmeCode;
     this.programmeName = programmeName;
     this.creditHours = creditHours;
@@ -48,20 +60,40 @@ public Programme(String programmeCode, String programmeName, int creditHours){
         this.creditHours = creditHours;
     }
 
-    
-    
-    public ArrayList<String> getTutorialGroup() {
+    public ListInterface<TutorialGroup> getTutorialGroup() {
         return tutorialGroup;
     }
 
-    public void setTutorialGroup(ArrayList<String> tutorialGroup) {
+    public void setTutorialGroup(ListInterface<TutorialGroup> tutorialGroup) {
         this.tutorialGroup = tutorialGroup;
     }
+@Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
 
+        if (obj == null) {
+            return false;
+        }
+
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final Programme other = (Programme) obj;
+
+        if (!(this.programmeCode.equals(other.programmeCode))) {
+            return false;
+        }
+
+        return true;
+    }
     @Override
     public String toString() {
-        return "Programme{" + "programmeCode=" + programmeCode + ", programmeName=" + programmeName + ", tutorialGroup=" + tutorialGroup + '}';
+        return "Programme{" + "programmeCode=" + programmeCode + ", programmeName=" + programmeName + ", creditHours=" + creditHours + '}';
     }
-
+    
+  
 }
 

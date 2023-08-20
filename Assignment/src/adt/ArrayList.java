@@ -85,7 +85,21 @@ public class ArrayList<T> implements ListInterface<T>, Serializable {
 
     return isSuccessful;
   }
+  
+  
+  @Override
+  public T getEntry(T entry) {
+    T result = null;
+    for(int i=0;i<numberOfEntries;i++){
+        System.out.println(array[i]);
+        if(array[i].equals(entry)){
+            result = array[i];
+            break;
+        }
+    }
 
+    return result;
+  }
   @Override
   public T getEntry(int givenPosition) {
     T result = null;
