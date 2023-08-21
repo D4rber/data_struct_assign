@@ -16,7 +16,7 @@ public class Programme {
     private String programmeCode;
     private String programmeName;
     private int creditHours;
-    private ListInterface<TutorialGroup> tutorialGroup;
+    private ListInterface<TutorialGroup> tutorialGroups;
 
     
 public Programme(String programmeCode, String programmeName, int creditHours){
@@ -33,7 +33,7 @@ public Programme(String programmeCode, String programmeName, int creditHours, Li
     this.programmeCode = programmeCode;
     this.programmeName = programmeName;
     this.creditHours = creditHours;
-    this.tutorialGroup = new ArrayList<>();
+    this.tutorialGroups = new ArrayList<>();
 }
 
     public String getProgrammeCode() {
@@ -60,12 +60,12 @@ public Programme(String programmeCode, String programmeName, int creditHours, Li
         this.creditHours = creditHours;
     }
 
-    public ListInterface<TutorialGroup> getTutorialGroup() {
-        return tutorialGroup;
+    public ListInterface<TutorialGroup> getTutorialGroups() {
+        return tutorialGroups;
     }
 
-    public void setTutorialGroup(ListInterface<TutorialGroup> tutorialGroup) {
-        this.tutorialGroup = tutorialGroup;
+    public void setTutorialGroups(ListInterface<TutorialGroup> tutorialGroup) {
+        this.tutorialGroups = tutorialGroup;
     }
 @Override
     public boolean equals(Object obj) {

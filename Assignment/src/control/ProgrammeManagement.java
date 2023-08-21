@@ -47,11 +47,26 @@ public class ProgrammeManagement {
       System.out.println("==================");
       System.out.println("Enter Programme Code : ");
       String programmeCode = scanner.nextLine();
+      for(int i = 0; i < programmeList.getNumberOfEntries(); i++){
+        if(programmeList.getEntry(i+1).getProgrammeCode == programmeCode){
+            programmeList.remove(i+1);
+
+        }
+      }
       
     }
     
     public void findProgramme(){
-        
+        System.out.println("Find Programme");
+        System.out.println("=====================");
+        System.out.println("Enter Programme Code");
+        String programmeCode = scanner.nextLine();
+        for(int i = 0; i < programmeList.getNumberOfEntries(); i++){
+            if(programmeList.getEntry(i+1).getProgrammeCode == programmeCode){
+                System.out.println(programmeList.getEntry(i+1).toString());
+
+        }
+      }
     }
     
     public void amendProgrammeDetail(){
@@ -81,10 +96,8 @@ public class ProgrammeManagement {
         System.out.println("Enter Number of Student: ");
         int numberOfStudent = scanner.nextInt();
         TutorialGroup tutorialGroup  = new TutorialGroup(tutorialGroupName, numberOfStudent);
-        Programme programmeToFind = new Programme("DCS");
-        System.out.println(programmeList.contains(programmeToFind));
-        System.out.println(programmeList.getEntry(programmeToFind));
-        System.out.println(programmeToFind);
+        Programme programmeToFind = new Programme("programmeCode");
+        programmeList.getEntry(new Programme(programmeCode)).tutorialGroups.add(tutorialGroup);
 //        programmeList.getEntry(new Programme(programmeCode)).setTutorialGroup(tutorialGroupList);
     }
     
