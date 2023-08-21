@@ -25,7 +25,7 @@ public class ProgrammeManagement {
         tutorialGroupList.add(new TutorialGroup("G2",25));
         programmeList.add(new Programme("DCS", "Diploma in Computer Science", 32));
         programmeList.add(new Programme("RDS","Bachelor Degree in Data Science", 31));
-        programmeList.getEntry(1).setTutorialGroup(tutorialGroupList);
+        programmeList.getEntry(1).setTutorialGroups(tutorialGroupList);
     }
     public void addProgramme(){
         System.out.println("Add Programme");
@@ -43,17 +43,16 @@ public class ProgrammeManagement {
      }
     
     public void removeProgramme(){
-      System.out.println("Remove Programme");
-      System.out.println("==================");
-      System.out.println("Enter Programme Code : ");
-      String programmeCode = scanner.nextLine();
-      for(int i = 0; i < programmeList.getNumberOfEntries(); i++){
-        if(programmeList.getEntry(i+1).getProgrammeCode == programmeCode){
-            programmeList.remove(i+1);
-
+        System.out.println("Remove Programme");
+        System.out.println("==================");
+        System.out.println("Enter Programme Code : ");
+        String programmeCode = scanner.nextLine();
+    
+        if(programmeList.remove(programmeToFind(programmeCode))!=null){
+            System.out.println("Remove Success");
+        }else{
+            System.out.println("Programme Not Found");
         }
-      }
-      
     }
     
     public void findProgramme(){
@@ -61,12 +60,13 @@ public class ProgrammeManagement {
         System.out.println("=====================");
         System.out.println("Enter Programme Code");
         String programmeCode = scanner.nextLine();
-        for(int i = 0; i < programmeList.getNumberOfEntries(); i++){
-            if(programmeList.getEntry(i+1).getProgrammeCode == programmeCode){
-                System.out.println(programmeList.getEntry(i+1).toString());
-
+        
+        Programme programmeToFind = programmeList.getEntry(programmeToFind(programmeCode));
+        if(programmeToFind != null){
+            System.out.println(programmeToFind.toString());
+        }else{
+            System.out.println("Programme Not Found");
         }
-      }
     }
     
     public void amendProgrammeDetail(){
@@ -76,11 +76,7 @@ public class ProgrammeManagement {
     public void listAllProgramme(){
         System.out.println("Programme");
         System.out.println("===================");
-        System.out.println(programmeList.getEntry(1).getTutorialGroup().getEntry(3));
-        System.out.println(programmeList.getNumberOfEntries());
-        System.out.println(programmeList.getEntry(1).getTutorialGroup().getNumberOfEntries());
         for(int i=0; i<programmeList.getNumberOfEntries(); i++){
-            
             System.out.println(programmeList.getEntry(i+1).toString());
         }
     }
@@ -95,21 +91,59 @@ public class ProgrammeManagement {
         String tutorialGroupName = scanner.nextLine();
         System.out.println("Enter Number of Student: ");
         int numberOfStudent = scanner.nextInt();
+        scanner.nextLine();
         TutorialGroup tutorialGroup  = new TutorialGroup(tutorialGroupName, numberOfStudent);
-        Programme programmeToFind = new Programme("programmeCode");
-        programmeList.getEntry(new Programme(programmeCode)).tutorialGroups.add(tutorialGroup);
+        
+        Programme programmeToFind = programmeList.getEntry(programmeToFind(programmeCode));
+        programmeToFind.getTutorialGroups().add(tutorialGroup);
+
+//        Programme programmeToFind = new Programme("programmeCode");
+//        programmeList.getEntry(new Programme(programmeCode)).getTutorialGroups().add(tutorialGroup);
 //        programmeList.getEntry(new Programme(programmeCode)).setTutorialGroup(tutorialGroupList);
     }
     
     public void removeTutorialGroup(){
+        System.out.println("Remove Tutorial Group");
+        System.out.println("==========================");
+        System.out.println("Enter Programme Code: ");
+        String programmeCode = scanner.nextLine();
         
+        Programme programmeToFind = programmeList.getEntry(programmeToFind(programmeCode));
+        if(programmeToFind != null){
+            System.out.println("Enter Tutorial Name: ");
+            String groupName = scanner.nextLine();
+            for(int i=0; i<programmeToFind.getTutorialGroups().getNumberOfEntries(); i++){
+                if(programmeToFind.getTutorialGroups().getEntry(i+1).getGroupName().equals(groupName)){
+                    programmeToFind.getTutorialGroups().remove(i+1);
+                }
+            }
+        }else{
+            System.out.println("Programme Not Found");
+        }
     }
     
     public void listAllTutorialGroup(){
+        System.out.println("Tutorial Group");
+        System.out.println("========================");
+        System.out.println("Enter Programme Code: ");
+        String programmeCode = scanner.nextLine();
+        
+        Programme programmeToFind = programmeList.getEntry(programmeToFind(programmeCode));
+        for(int i=0; i<programmeToFind.getTutorialGroups().getNumberOfEntries(); i++){
+            System.out.println(programmeToFind.getTutorialGroups().getEntry(i+1).toString());
+        }
+    }
+    public void generateReports(){
         
     }
     
-    public void generateReports(){
-        
+    private int programmeToFind(String programmeCode){
+        int position = 0;
+        for(int i=0; i<programmeList.getNumberOfEntries(); i++ ){
+            if(programmeList.getEntry(i+1).getProgrammeCode().equals(programmeCode)){
+                position = i+1;
+            }
+        }
+        return position;
     }
 }

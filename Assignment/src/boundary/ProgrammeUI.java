@@ -26,7 +26,8 @@ public class ProgrammeUI{
             System.out.println("7. Remove Tutorial Group");
             System.out.println("8. List all Tutorial Group");
             System.out.println("9. Generate Report");
-            System.out.println("\nPlease input >");
+            System.out.println("0. Exit System");
+            System.out.print("Please input > ");
         
             choice = scanner.nextInt();
 
