@@ -6,12 +6,14 @@ package adt;
  */
 
 import java.io.Serializable;
+import java.util.Iterator;
 
-public class ArrayList<T> implements ListInterface<T>, Serializable {
+public class ArrayList<T> implements ListInterface<T>, Serializable{
 
   private T[] array;
   private int numberOfEntries;
   private static final int DEFAULT_CAPACITY = 5;
+ 
 
   public ArrayList() {
     this(DEFAULT_CAPACITY);
@@ -20,6 +22,26 @@ public class ArrayList<T> implements ListInterface<T>, Serializable {
   public ArrayList(int initialCapacity) {
     numberOfEntries = 0;
     array = (T[]) new Object[initialCapacity];
+  }
+  
+  public Iterator<T> getIterator(){
+        Iterator<T> iterator = new Iterator<T>(){
+            private int index = 0;
+      
+            public boolean hasNext(){
+            return index < numberOfEntries;
+            }
+            
+            public T next(){
+                if(!hasNext()){
+                    return null;
+                }
+                T entry = array[index];
+                index++;
+                return entry;
+            }
+      };
+        return iterator;        
   }
 
   @Override
