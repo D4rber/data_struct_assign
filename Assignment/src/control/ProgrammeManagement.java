@@ -10,6 +10,7 @@ import adt.ListInterface;
 import java.util.Scanner;
 import entity.Programme;
 import entity.TutorialGroup;
+import java.util.Iterator;
 /**
  *
  * @author HP
@@ -134,7 +135,7 @@ public class ProgrammeManagement {
         }
     }
     public void generateReports(){
-        
+        testing();        
     }
     
     private int programmeToFind(String programmeCode){
@@ -145,5 +146,13 @@ public class ProgrammeManagement {
             }
         }
         return position;
+    }
+    
+    private void testing(){
+        Iterator iterator = programmeList.getIterator();
+        while(iterator.hasNext()){
+            System.out.println("1");
+            System.out.println(iterator.next());
+        }
     }
 }
