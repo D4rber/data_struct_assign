@@ -62,12 +62,11 @@ public class ProgrammeUI {
     public void listAllProgrammeUI(){
         System.out.println("Programme");
         System.out.println("==========================");
-
     }
     public void generateReportUI(){
         System.out.println("Report");
         System.out.println("===========================");
-        System.out.println("Programme Code  Programme Name    Number Of Tutorial Group");
+        System.out.println("Programme Code   Programme Name                      Number Of Tutorial Group");
     }   
     public void amendProgrammeDetailUI(){
         System.out.println("Amend Programme Detail");
@@ -109,10 +108,11 @@ public class ProgrammeUI {
         return numberOfStudent;
     }
     public void displayProgramme(Programme programme){
-        System.out.println(programme.toString());
+        System.out.printf("Programme Code: %s       Programme Name: %s      Credit Hours: %d\n",programme.getProgrammeCode(),programme.getProgrammeName(),programme.getCreditHours());
+        
     }
     public void displayTutorial(TutorialGroup tutorial){
-        System.out.println(tutorial.toString());
+        System.out.printf("Group Name: %s       Number of Student: %d\n", tutorial.getGroupName(),tutorial.getNumOfStudent());
     }
     public void displayFailToFindProgramme(){
         System.out.println("Programme Not Found");

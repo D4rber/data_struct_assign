@@ -217,7 +217,7 @@ public class ProgrammeManagement {
                 total = programme.getTutorialGroups().getNumberOfEntries();
             }
             
-            System.out.println(programme.getProgrammeCode()+programme.getProgrammeName()+total);
+            System.out.printf("%-16s %-35s %-4d\n",programme.getProgrammeCode(),programme.getProgrammeName(),total);
         }
     }   
     
