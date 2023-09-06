@@ -50,5 +50,14 @@ public class MessageUI {
     public static void displayProgAddedMessage(){
         System.out.println("\n\t\t--- Programme Added Successfully !---\n");
     }
-            
+    
+    public static void displayInvalidChoiceMessage() {
+    System.out.println("\nInvalid choice");
+  }
+    public static void nothingFound(){
+      System.out.println("\nNothing found !!!");
+  }
+     public static void isFull(){
+      System.out.println("\nIt is Full !!!");
+  }
 }

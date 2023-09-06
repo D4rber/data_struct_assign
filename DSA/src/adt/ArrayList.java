@@ -12,6 +12,7 @@ public class ArrayList<T> implements ListInterface<T>, Serializable{
 
   private T[] array;
   private int numberOfEntries;
+  private int numberofGroup;
   private static final int DEFAULT_CAPACITY = 5;
  
 
@@ -225,4 +226,32 @@ public class ArrayList<T> implements ListInterface<T>, Serializable{
   }
       return n;
     }
+    
+    @Override
+  public T get(int index) {
+        if (index < 0 || index >= numberOfEntries) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        return (T) array[index];
+    }
+
+   
+
+@Override
+  public boolean cNumberofGroup(){
+      return numberofGroup == 0;
+  }
+  @Override
+  public void maxNumberofGroup(int entry){
+          numberofGroup = entry;
+  }
+  @Override
+  public int getMaxNumberofGroup(){
+      return numberofGroup;
+  }
+    
+    
+    
+    
+    
 }
