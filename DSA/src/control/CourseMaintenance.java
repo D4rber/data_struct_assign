@@ -7,6 +7,8 @@ package control;
 import adt.*;
 import boundary.*;
 import entity.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import utility.MessageUI;
 import java.util.Scanner;
 /**
@@ -67,9 +69,8 @@ public class CourseMaintenance {
     }while(!choice.equals("0"));
 }
     public void addCourse(){
-        
-        String cCode = null;
-        Course cr = courseUI.inputCourseDetails(cCode);
+    
+        Course cr = courseUI.inputCourseDetails();
         
 //        if the course code are same it will display error message
         if(courseList.getEntry(cr)!= null){
@@ -93,8 +94,8 @@ public class CourseMaintenance {
         for (int i=1; i < courseList.getNumberOfEntries()+1;i++){
                System.out.println("\t "+ i + " > " + courseList.getEntry(i));
            }
-        int deleteNo = 0;
-        deleteNo = courseUI.getDeleteNo(deleteNo);
+        int deleteNo;
+        deleteNo = courseUI.getDeleteNo();
 //        if the number insert are correct , the course will be deleted else display error mesej
         if (deleteNo >= 1 && deleteNo <= courseList.getNumberOfEntries()) {
             System.out.println("\t"+courseList.getEntry(deleteNo));
@@ -106,8 +107,8 @@ public class CourseMaintenance {
     }
     
     public void findCourse(){
-        String cCode= null;
-        cCode = courseUI.fCourse(cCode);
+        String cCode;
+        cCode = courseUI.fCourse();
         
         Course cr = courseList.getEntry(new Course(cCode));
         
@@ -125,13 +126,11 @@ public class CourseMaintenance {
             for (int i=1; i < courseList.getNumberOfEntries()+1;i++){
                System.out.println("\t "+ i + " > " + courseList.getEntry(i));
             }
-                int amendNo=0;
-                amendNo = courseUI.getAmendNo(amendNo);
-                
-                String cCode= null;
+                int amendNo;
+                amendNo = courseUI.getAmendNo();
                   
                 //Course courseAmend = courseUI.aCourse(cCode);
-                Course cr = courseUI.amendC(cCode);
+                Course cr = courseUI.amendC();
                
                     if (amendNo >= 1 && amendNo <= courseList.getNumberOfEntries()) {
                             //courseList.replace(amendNo, courseAmend);
@@ -153,21 +152,19 @@ public class CourseMaintenance {
         if(courseList.getNumberOfEntries()!=0){
         for (int i = 0; i < courseList.getNumberOfEntries(); i++) {  
            System.out.println("\t Course : \n\t" +courseList.getEntry(i + 1));
-           System.out.println("\t Programme : " +courseList.getEntry(i + 1).getAllProgramme());
         }
         }else{
             MessageUI.displayNoCourseFoundMessage();
         }
     }
      public void addProgrammeToCourse(){
-        String cCode = null;
-        cCode = programmeUI.addProgToCourse(cCode);
+       
+        String cCode = programmeUI.addProgToCourse();
         
         Course cr = courseList.getEntry(new Course(cCode));
         if(cr != null){
             
-            String pCode = null;
-            pCode = programmeUI.aProgramme(pCode);
+            String pCode = programmeUI.aProgramme();
             Programme p = programmeList.getEntry(new Programme(pCode));
             
             if (p == null) {
@@ -204,8 +201,8 @@ public class CourseMaintenance {
     } 
      
     public void deleteProgramme(){
-        String cCode = null;
-        cCode = programmeUI.deleteProgFromCourse(cCode);
+        
+       String cCode = programmeUI.deleteProgFromCourse();
         
         Course cr = courseList.getEntry(new Course(cCode));
         if(cr != null){
@@ -216,8 +213,8 @@ public class CourseMaintenance {
                 for (int i = 1; i < cr.getAllProgramme().getNumberOfEntries() + 1; i++) {
                     System.out.println("\t "+ i + " > " + cr.getAllProgramme().getEntry(i));
                 }
-                int deleteNo = 0;
-                deleteNo = courseUI.getDeleteNo(deleteNo);
+                int deleteNo;
+                deleteNo = courseUI.getDeleteNo();
                 
                 if (deleteNo >= 1 && deleteNo <= cr.getAllProgramme().getNumberOfEntries()) {
 //                    System.out.println("\t"+cr.getAllProgramme().getEntry(deleteNo));
@@ -236,7 +233,29 @@ public class CourseMaintenance {
     }
     public void courseReport(){
         courseUI.courseRep();
+        LocalDate currentDate = LocalDate.now();   
+   
+        // Define date and time format patterns
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         
+        // Format the current date and time as strings
+        String formattedDate = currentDate.format(dateFormatter);
+        
+        // Print the current date and  separately
+        System.out.println("Date: " + formattedDate + "\n");
+      int numberOfEntries = courseList.getNumberOfEntries();
+        if(courseList.getNumberOfEntries()!=0){
+            
+            for (int i = 0; i < courseList.getNumberOfEntries(); i++) {  
+           
+                System.out.println("\t Course : \n\t" +courseList.getEntry(i + 1));
+                System.out.println("\t" + courseList.getEntry(i + 1).getAllProgramme());
+                
+            }
+        }else{
+            MessageUI.displayNoCourseFoundMessage();            
+        }
+        System.out.println("\n\tCourse added today : " + numberOfEntries);
+    }
     }
 
-}

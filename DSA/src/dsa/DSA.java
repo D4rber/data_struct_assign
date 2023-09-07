@@ -39,8 +39,12 @@ do{
                 break;
             case "4":
                 new TutorManagementSystem().runTutorManager();
+                break;
+            case "0":
+                System.out.println("Program Exited");
+                break;
             default:
-                System.out.println("Invalid Input");
+                System.out.println("Invalid Input\n");
         }
     }while(!choice.equals("0"));
     }

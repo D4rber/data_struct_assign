@@ -33,7 +33,7 @@ public class CourseMaintenanceUI {
         
         return choice;
     }
-   public Course inputCourseDetails(String cCode){
+   public Course inputCourseDetails(){
        System.out.println("\n\n");
         //add order module title
         System.out.println("\t ----------------");
@@ -41,7 +41,7 @@ public class CourseMaintenanceUI {
         System.out.println("\t ----------------");
       
         System.out.print("\t Please enter Course Code  : ");
-        cCode = scanner.nextLine();
+        String cCode = scanner.nextLine();
         
         System.out.print("\t Please enter Course Name : ");
         String cName = scanner.nextLine();
@@ -58,21 +58,21 @@ public class CourseMaintenanceUI {
         System.out.println("\t -------------");
    }
                      
-   public int getDeleteNo(int deleteNo){
+   public int getDeleteNo(){
         System.out.print("\n\t Enter the number to delete : ");
-        deleteNo = scanner.nextInt();
+        int deleteNo = scanner.nextInt();
         scanner.nextLine();
         
         return deleteNo;
    }
    
-   public String fCourse(String cCode){
+   public String fCourse(){
         System.out.println("\n\n");
         System.out.println("\t -----------");
         System.out.println("\t Find Course");
         System.out.println("\t -----------");
         System.out.print("\t Enter Course Code : ");
-        cCode = scanner.nextLine();
+        String cCode = scanner.nextLine();
         
         return cCode;
    }
@@ -83,25 +83,18 @@ public class CourseMaintenanceUI {
         System.out.println("\t ------------");
    }
    
-   public int getAmendNo(int amendNo){
+   public int getAmendNo(){
         System.out.print("\n\t Enter the number to amend : ");
-        amendNo = scanner.nextInt();
+        int amendNo = scanner.nextInt();
         scanner.nextLine();
         
         return amendNo;
    }
    
-//   public Course aCourse(String cCode){
-//       
-//       System.out.print("\t Enter new Course Code        : ");
-//       cCode = scanner.nextLine();
-//       
-//       Course courseAmend = new Course(cCode);
-//       return courseAmend;
-//   }
-   public Course amendC(String cCode){
+
+   public Course amendC(){
        System.out.print("\t Enter new Course Code        : ");
-       cCode = scanner.nextLine();
+       String cCode = scanner.nextLine();
        
         System.out.print("\t Enter new Course Name        : ");
         String cName = scanner.nextLine();
