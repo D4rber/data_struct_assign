@@ -14,14 +14,14 @@ import adt.ListInterface;
 import java.util.Scanner;
 import entity.Programme;
 import entity.TutorialGroup;
-import boundary.ProgrammeUI;
+import boundary.ProgrammeMaintenanceUI;
 import java.util.Iterator;
 
 public class ProgrammeManagement {
     private ListInterface<Programme> programmeList = new ArrayList<>();
     private ListInterface<TutorialGroup> tutorialGroupList = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
-    private ProgrammeUI programmeUI = new ProgrammeUI();
+    private ProgrammeMaintenanceUI programmeUI = new ProgrammeMaintenanceUI();
     
     public void programmeManagement(){
         tutorialGroupList.add(new TutorialGroup("G1",23));
