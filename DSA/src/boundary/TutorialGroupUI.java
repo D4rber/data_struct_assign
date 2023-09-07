@@ -9,7 +9,7 @@ import entity.TutorialGroup;
 import java.util.Scanner;
 /**
  *
- * @author howei
+ * @author howeiyoung
  */
 public class TutorialGroupUI {
 private final Scanner scanner;

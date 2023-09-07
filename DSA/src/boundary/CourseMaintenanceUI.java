@@ -8,7 +8,7 @@ import entity.Course;
 import java.util.Scanner;
 /**
  *
- * @author yongj
+ * @author YU YUNG JUN
  */
 public class CourseMaintenanceUI {
     Scanner scanner = new Scanner(System.in);

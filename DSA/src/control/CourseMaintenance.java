@@ -13,7 +13,7 @@ import utility.MessageUI;
 import java.util.Scanner;
 /**
  *
- * @author yongj
+ * @author YU YUNG JUN
  */
 public class CourseMaintenance {
     private ListInterface<Course> courseList = new ArrayList<>();
@@ -23,6 +23,7 @@ public class CourseMaintenance {
     private Scanner scanner = new Scanner(System.in);
     
     public void runCourseMaintenance(){
+      courseList.add(new Course("AACS1123","Data Mining"));
       String choice;
         do{
             choice = courseUI.getDisplayMenuChoice();

@@ -10,7 +10,7 @@ import adt.ListInterface;
 
 /**
  *
- * @author yongj
+ * @author YU YUNG JUN
  */
 public class Course {
     private String cCode;

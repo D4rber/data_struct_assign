@@ -9,7 +9,7 @@ import adt.*;
 import entity.TutorialGroup;
 /**
  *
- * @author howei
+ * @author howeiyoung
  */
 public class TutorialGroupInitializer {
     //  Method to return a collection of with hard-coded entity values
