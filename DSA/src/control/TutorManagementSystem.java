@@ -2,8 +2,7 @@ package control;
 
 import adt.*;
 import boundary.TutorManagementUI;
-import boundary.TutorManagementUI.*;
-import boundary.TutorManagementUI.*;
+
 import entity.Tutors;
 
 import dao.*;
