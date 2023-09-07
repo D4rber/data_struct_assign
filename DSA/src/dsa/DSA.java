@@ -19,7 +19,7 @@ public class DSA {
         Scanner scanner = new Scanner(System.in);
         String choice;
 do{
-        System.out.println("Welcome to University Management System");
+        System.out.println("\n\nWelcome to University Management System");
         System.out.println("=======================================================");
         System.out.println("1. Programme Management");
         System.out.println("2. Course Management");
