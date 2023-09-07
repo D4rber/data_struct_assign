@@ -1,5 +1,8 @@
 package control;
-
+/**
+ *
+ * @author Low Su Yin 
+ */
 //import java.util.ArrayList;
 import adt.ArrayList;
 import java.io.BufferedReader;

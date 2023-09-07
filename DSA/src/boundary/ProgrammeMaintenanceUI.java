@@ -10,7 +10,7 @@ import adt.ListInterface;
 import java.util.Scanner;
 /**
  *
- * @author yongj
+ * @author yongj/Fong Wei Sheng
  */
 public class ProgrammeMaintenanceUI {
     Scanner scanner = new Scanner(System.in);

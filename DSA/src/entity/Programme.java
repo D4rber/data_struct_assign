@@ -10,7 +10,7 @@ import adt.ListInterface;
 
 /**
  *
- * @author HP
+ * @author Fong Wei Sheng
  */
 public class Programme {
     private String programmeCode;

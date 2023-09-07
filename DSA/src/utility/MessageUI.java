@@ -7,7 +7,7 @@ package utility;
 
 /**
  *
- * @author yongj
+ * @author yongj/ Ho Wei Young
  */
 public class MessageUI {
     

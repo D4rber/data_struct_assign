@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  *
- * @author ASUS
+ * @author Ho Wei Young
  */
 public class TutorialGroup {
     private String groupName;

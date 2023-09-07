@@ -12,7 +12,7 @@ import control.AssignmentTeamManagement;
 import java.util.Scanner;
 /**
  *
- * @author ASUS
+ * @author Fong Wei Sheng
  */
 public class DSA {
     public static void main(String args[]){

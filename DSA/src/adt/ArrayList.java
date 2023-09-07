@@ -1,7 +1,7 @@
 package adt;
 
 /**
- * @author Frank M. Carrano
+ * @author Tongkitming/ Fong Wei Sheng/ Yu Yung Jun/ Ho Wei Young/ Low Su Yin
  * @version 2.0
  */
 
