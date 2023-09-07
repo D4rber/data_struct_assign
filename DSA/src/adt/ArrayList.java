@@ -288,6 +288,30 @@ public class ArrayList<T> implements ListInterface<T>, Serializable{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
+    @Override
+    public void bubbleSort(int[] entry) {
+        int n = numberOfEntries;
+        T temp = null;
+        int temp1=0;
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+                System.out.println(entry[j-1]);
+                System.out.println(array[j - 1]);
+                if (entry[j - 1] > entry[j]) {
+                    //swap elements  
+                    temp = array[j - 1];
+                    array[j - 1] = array[j];
+                    array[j] = temp;
+                    temp1 = entry[j - 1];
+                    entry[j - 1] = entry[j];
+                    entry[j] = temp1;
+                }
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            System.out.println(array[i]);
+        }
+    }
     
 }

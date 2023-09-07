@@ -7,12 +7,14 @@ package boundary;
 
 import entity.TutorialGroup;
 import java.util.Scanner;
+
 /**
  *
- * @author howeiyoung
+ * @author howei
  */
 public class TutorialGroupUI {
-private final Scanner scanner;
+
+    private final Scanner scanner;
 
     public TutorialGroupUI() {
         // Initialize the scanner in the constructor
@@ -21,41 +23,67 @@ private final Scanner scanner;
 
 //Tutorial Group Menu
     public int getMenuChoice() {
-        
-        System.out.println("\nMAIN MENU");
-        System.out.println("1. Add new student in a tutorial group");
+        System.out.println("\n=== Main Menu ===");
+        System.out.println("1. Add a new student to a tutorial group");
         System.out.println("2. Remove a student from a tutorial group");
-        System.out.println("3. Change the tutorial group for student");
-        System.out.println("4. Find a student in tutorial group");
-        System.out.println("5. List all student in tutorial group");
-        System.out.println("6. Filter");
+        System.out.println("3. Change the tutorial group for a student");
+        System.out.println("4. Find a student in a tutorial group");
+        System.out.println("5. List all students in a tutorial group");
+        System.out.println("6. Filter ");
+        System.out.println("7. Report ");
         System.out.println("0. Quit");
-        System.out.print("Enter choice: ");
+
+        System.out.print("Enter your choice (1-7, or 0 to quit): ");
         int choice = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println();
+        scanner.nextLine(); // Consume the newline character
+
         return choice;
     }
-    //display list
-    public void listGroups(String outputStr){
-        System.out.println("\nList of Groups\n" + outputStr);
-    }
-    public void listAllStudents(String outputStr) {
 
-        System.out.println("\nList of Student\n" + outputStr);
+    //display list
+    public void foundStudent(String string){
+        System.out.println(string);
+    }
+    public void listReport(String outputStr, int totalNum, String record) {
+        System.out.println("\n=== List of Groups === \n"
+                + "Tutorial Group   Max.No           Current.No\n" + outputStr + "\n Total student : " + totalNum + ""
+                        + "\n\n === Record Tutorial group === "
+                        + "\n Action             Content"
+                        + "\n" + record);
+    }
+
+    public void listGroups(String outputStr) {
+        System.out.println("\n=== List of Groups === \n"
+                + "Tutorial Group   Max.No\n" + outputStr);
+    }
+
+    public void listAllStudents(String outputStr) {
+        System.out.println("\n=== List of Students ===\n"
+                + "No.Group Student Name        E-mail\n" + outputStr);
+    }
+
+    public void headerListStudent(int noGroup) {
+
+        String message = String.format("\n=== List of Tutorial Group %d ===\n"
+                + "No.Group Student Name        E-mail\n", noGroup);
+        System.out.println(message);
     }
 
     public void listStudent(String outputStr) {
         System.out.println(outputStr);
     }
-    
+
     //choice
-    public int getChoice(){
-        System.out.println("Filter Menu:"
-                + "\n1) Tutoria Group\n2)Student");
+    public int getChoice() {
+        System.out.println("=== Filter Menu ===");
+        System.out.println("1) Filter by Tutorial Group");
+        System.out.println("2) Filter by Student");
+
+        System.out.print("Enter your choice (1 or 2): ");
         int choice = scanner.nextInt();
-                scanner.nextLine();
-              return choice;  
+        scanner.nextLine(); // Consume the newline character
+
+        return choice;
     }
 
     public int chooseGroup(int maxGroup) {
@@ -67,10 +95,9 @@ private final Scanner scanner;
         int choice = scanner.nextInt();
         scanner.nextLine();
         return choice;
-        
+
     }
 
-    
     //add student
     public TutorialGroup inputTutorialGroupDetails(int num) {
         String tgName = inputTutorialGroupName();
@@ -79,9 +106,9 @@ private final Scanner scanner;
         System.out.println();
         return new TutorialGroup(tgName, tgNumber, tgEmail);
     }
-    
+
     public String inputTutorialGroupName() {
-               String name = null;
+        String name = null;
         boolean validInput = false;
 
         while (!validInput) {
@@ -90,7 +117,7 @@ private final Scanner scanner;
                 name = scanner.nextLine();
 
                 // Validate the input (customize this part based on your requirements)
-                if (!name.isEmpty() && name.matches("^[a-zA-Z\\s]+$")&& name.length() >= 3) {
+                if (!name.isEmpty() && name.matches("^[a-zA-Z\\s]+$") && name.length() >= 3) {
                     validInput = true;
                 } else {
                     System.out.println("Invalid input. Please enter a valid name.");
@@ -102,7 +129,7 @@ private final Scanner scanner;
         }
         return name;
     }
-    
+
     private static String generateEmail(String studentName) {
         // Remove spaces and convert the student's name to lowercase
         String formattedName = studentName.replaceAll("\\s+", "").toLowerCase();
@@ -116,104 +143,121 @@ private final Scanner scanner;
         return email;
     }
 
-    
-    private int inputTutorialGroupNumber() {
-        System.out.print("Enter student group: ");
-        int number = scanner.nextInt();
-        return number;
-    }
-
-
-
+//    private int inputTutorialGroupNumber() {
+//        System.out.print("Enter student group: ");
+//        int number = scanner.nextInt();
+//        return number;
+//    }
     public int removeStudent() {
         boolean validInput = false;
         int num = 0;
-        
+
         while (!validInput) {
-                    System.out.println("Enter which line to remove student base on above list: ");
-         num = scanner.nextInt();
-       
+            System.out.println("Enter which line to remove student base on above list: ");
+            num = scanner.nextInt();
+
         }
- return num;
+        return num;
     }
 
-
-    
 //change group number
-    public int changeGroup(TutorialGroup toChange, int maxNo){
+    public int changeGroup(TutorialGroup toChange, int maxNo) {
         String name = toChange.getName();
         int currentGroup = toChange.getNumber();
-        boolean inputValid = false;    
+        boolean inputValid = false;
         int noChange = 0;
-        
-        System.out.println("To change "+name+" from group"+currentGroup
+
+        System.out.println("To change " + name + " from group" + currentGroup
                 + "\nEnter Which group to change");
-        
-        while(!inputValid){
-            try{
+
+        while (!inputValid) {
+            try {
                 noChange = scanner.nextInt();
-                if(noChange >=0 && noChange<=maxNo){
-                    inputValid=true;
-                }else{
+                if (noChange >= 0 && noChange <= maxNo) {
+                    inputValid = true;
+                } else {
                     System.out.println("Please enter the no. group exist in the list!");
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 System.err.println("An error occurred while reading input: " + e.getMessage());
                 scanner.nextLine(); // Consume the invalid input
             }
         }
         return noChange;
-        
-    }
-    public void displayChangeGroup(TutorialGroup changed, int pInt){
-        System.out.println("\n"+changed.getName()+" has changed from group" +pInt +" to group "+ changed.getNumber());
+
     }
 
+    public void displayChangeGroup(TutorialGroup changed, int pInt) {
+        System.out.println("\n" + changed.getName() + " has changed from group" + pInt + " to group " + changed.getNumber());
+    }
 
-public String filterName(){
-    System.out.print("Enter which name to filter: ");
+    public String returnChangeGroup(TutorialGroup changed, int pInt) {
+        return (changed.getName() + " has changed from group" + pInt + " to group " + changed.getNumber());
+    }
+
+    public String filterName() {
+        System.out.print("Enter which name to filter: ");
         String name = scanner.next();
         scanner.nextLine();
         return name;
-}
-    public int filterGroup(){
+    }
+
+    public int filterGroup() {
         System.out.print("Enter which line to filter: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         return choice;
     }
-    public int changeSize(){
-        System.out.println("What size? :");
+
+    public int changeSize() {
+        System.out.println("Change size to ? :");
         int size = scanner.nextInt();
         scanner.nextLine();
         return size;
     }
-    public TutorialGroup filterStudent() {
-        String tgName = inputTutorialGroupName();
-        String tgEmail = generateEmail(tgName);
-        int tgNumber = inputTutorialGroupNumber();
-        scanner.nextLine();
-        System.out.println();
-        return new TutorialGroup(tgName, tgNumber, tgEmail);
-    }
-    public boolean comfirmationRemove(TutorialGroup student){
-        boolean confirm = false;
-        System.out.println("Y to confirm remove "+student.getName()+" from group "+student.getNumber()+" if no then press N");
-        String userInput = scanner.nextLine().trim().toUpperCase(); // Read and format user input
-    switch (userInput) {
-        case "Y":
-            confirm = true;
-            break;
-        case "N":
-            confirm = false;
-            break;
-        default:
-            System.out.println("Invalid input. Please enter 'Y' to confirm or 'N' to cancel.");
-            break;
+
+    public void displayChangeSize(int cNo, int pInt, int cInt) {
+        System.out.println("\n Group " + cNo + "has changed Max size from " + pInt + " to " + cInt);
     }
 
+    public String recordChangeSize(int cNo, int pInt, int cInt) {
+        return (" Group " + cNo + "has changed Max size from " + pInt + " to " + cInt);
+    }
+
+    public TutorialGroup filterStudent(int num) {
+        String tgName = inputTutorialGroupName();
+        String tgEmail = generateEmail(tgName);
+        int tgnum = num;
+        scanner.nextLine();
+        System.out.println();
+        return new TutorialGroup(tgName, tgnum, tgEmail);
+    }
+
+    public void displayFilterStudent(String pName, String cName) {
+        System.out.println("\n" + pName + " has filtered to " + cName + "\n");
+    }
+
+    public String recordFilterStudent(String pName, String cName) {
+        return (pName + " has filtered to " + cName);
+    }
+
+    public boolean comfirmationRemove(TutorialGroup student) {
+        boolean confirm = false;
+        System.out.println("Y to confirm remove " + student.getName() + " from group " + student.getNumber() + " if no then press N");
+        String userInput = scanner.nextLine().trim().toUpperCase(); // Read and format user input
+        switch (userInput) {
+            case "Y":
+                confirm = true;
+                break;
+            case "N":
+                confirm = false;
+                break;
+            default:
+                System.out.println("Invalid input. Please enter 'Y' to confirm or 'N' to cancel.");
+                break;
+        }
+
         return confirm;
-        
-        
+
     }
 }

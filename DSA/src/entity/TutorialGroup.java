@@ -20,6 +20,10 @@ public class TutorialGroup {
     private String email;
     private int size;
     private boolean isFull;
+    private int currentNo;
+    private String action;
+    private String content;
+    private String dateTime;
 
     public TutorialGroup(String groupName, int numOfStudent) {
         this.groupName = groupName;
@@ -42,8 +46,40 @@ public class TutorialGroup {
         this.numOfStudent = numOfStudent;
     }
     
+   public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+
+    public int getCurrentNo() {
+        return currentNo;
+    }
+
+    public void setCurrentNo(int currentNo) {
+        this.currentNo = currentNo;
+    }
     
-        public int getCgroup() {
+    public int getCgroup() {
         return cgroup;
     }
 
@@ -67,7 +103,17 @@ public class TutorialGroup {
         this.isFull = isFull;
     }
     
-   
+    public TutorialGroup(){
+    }
+    public TutorialGroup(String action, String content, String dateTime){
+        this.action = action;
+        this.content = content;
+        this.dateTime = dateTime;
+    }
+    public TutorialGroup(int curNo){
+        this.currentNo = curNo;
+    }
+
     public TutorialGroup(int cgroup, int size, boolean isFull){
         this.cgroup = cgroup;
         this.size = size;
@@ -128,23 +174,26 @@ public class TutorialGroup {
       return false;
     }
     final TutorialGroup other = (TutorialGroup) obj;
-    if (!Objects.equals(this, other)) {
+    if(!Objects.equals(this, other)) {
       return false;
     }
     return true;
   }
   
  
+ @Override
+  public String toString() {
+    return String.format("%d Group  %-20s %20s", group, name, email);
+  }
 
-
-    public String customToString() {
-        return String.format("%dG  %-10s %10s", cgroup, size, isFull);
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%dG  %-20s %20s", group, name, email);
-    }
-    
+  public String customToString() {
+    return String.format("%dG  %17s %7s", cgroup, size, isFull);
+  }
+  public String currentNo(){
+      return String.format("%d students", currentNo);
+  }
+  public String record(){
+      return String.format("%-15s %-50s   %s", action, content, dateTime);
+  }
     
 }
