@@ -85,7 +85,6 @@ public class TutorialGroupMaintainance {
             for (int j = 1; j <= tutorialGroupList.getNumberOfEntries(); j++) {
                 if (tutorialGroupList.getEntry(j).getNumber() == gSize.getEntry(i).getCgroup()) {
                     count[i]++;
-                    System.out.println(count[i]);
                 }
             }
         }
