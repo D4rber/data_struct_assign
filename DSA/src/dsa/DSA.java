@@ -7,6 +7,8 @@ import control.CourseMaintenance;
 import control.ProgrammeManagement;
 import control.TutorialGroupMaintainance;
 import control.TutorManagementSystem;
+import control.AssignmentTeamManagement;
+
 import java.util.Scanner;
 /**
  *
@@ -23,6 +25,7 @@ do{
         System.out.println("2. Course Management");
         System.out.println("3. Tutorial Group Management");
         System.out.println("4. Tutor Management");
+        System.out.println("5. Assignment Team Management");
         System.out.println("0. Exit System");
         System.out.print("Please input > ");
         choice = scanner.nextLine();
@@ -40,6 +43,8 @@ do{
             case "4":
                 new TutorManagementSystem().runTutorManager();
                 break;
+            case "5":
+                new AssignmentTeamManagement().menu();
             case "0":
                 System.out.println("Program Exited");
                 break;
