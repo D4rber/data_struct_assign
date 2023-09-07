@@ -27,7 +27,7 @@ public class ProgrammeManagement {
         tutorialGroupList.add(new TutorialGroup("G1",23));
         tutorialGroupList.add(new TutorialGroup("G2",25));
         programmeList.add(new Programme("DCS", "Diploma in Computer Science", 32));
-        programmeList.add(new Programme("RDS","Bachelor Degree in Data Science", 31));
+        programmeList.add(new Programme("RDS","Bachelor Degree in Data Science", 31, new ArrayList<>()));
         programmeList.getEntry(1).setTutorialGroups(tutorialGroupList);
         String choice;
         do{
@@ -97,7 +97,7 @@ public class ProgrammeManagement {
         int creditHours = programmeUI.inputCreditHours();
         
         if(programmeList.getEntry(new Programme(programmeCode))==null){
-        Programme programme = new Programme(programmeCode, programmeName, creditHours);
+        Programme programme = new Programme(programmeCode, programmeName, creditHours, new ArrayList<>());
         programmeList.add(programme);
         programmeUI.displayProgrammeAddSuccess();
         }else{
