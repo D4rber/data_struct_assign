@@ -30,6 +30,7 @@ public class TutorManagementUI {
         System.out.print("Select an option: ");
 
         int choice = scanner.nextInt();
+        scanner.nextLine();
 
         return choice;
     }
@@ -44,7 +45,7 @@ public class TutorManagementUI {
         System.out.println("5.Salary");
         System.out.print("Select an option: ");
         int choice = scanner.nextInt();
-
+        scanner.nextLine();
         return choice;
 
     }
