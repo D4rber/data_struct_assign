@@ -7,6 +7,7 @@ package adt;
 
 import java.io.Serializable;
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 public class ArrayList<T> implements ListInterface<T>, Serializable{
 
@@ -25,6 +26,7 @@ public class ArrayList<T> implements ListInterface<T>, Serializable{
     array = (T[]) new Object[initialCapacity];
   }
   
+  @Override
   public Iterator<T> getIterator(){
         Iterator<T> iterator = new Iterator<T>(){
             private int index = 0;
@@ -251,7 +253,41 @@ public class ArrayList<T> implements ListInterface<T>, Serializable{
   }
     
     
-    
+       @Override
+    public T find(Predicate<T> predicate) {
+        for (int index = 0; index < numberOfEntries; index++) {
+            if (predicate.test(array[index])) {
+                return array[index];
+            }
+        }
+        return null;
+    }
+        @Override
+    public void listAll() {
+        for (int index = 0; index < numberOfEntries; index++) {
+            System.out.println(array[index]); // `toString` method
+        }
+    }
+
+    @Override
+    public void filter(Predicate<T> predicate) {
+        for (int index = 0; index < numberOfEntries; index++) {
+            if (predicate.test(array[index])) {
+                System.out.println(array[index]);
+            }
+        }
+    }
+
+    @Override
+    public T find(String tutorName) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void filter(String criteria) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
     
 }

@@ -6,6 +6,7 @@ package dsa;
 import control.CourseMaintenance;
 import control.ProgrammeManagement;
 import control.TutorialGroupMaintainance;
+import control.TutorManagementSystem;
 import java.util.Scanner;
 /**
  *
@@ -21,6 +22,7 @@ do{
         System.out.println("1. Programme Management");
         System.out.println("2. Course Management");
         System.out.println("3. Tutorial Group Management");
+        System.out.println("4. Tutor Management");
         System.out.println("0. Exit System");
         System.out.print("Please input > ");
         choice = scanner.nextLine();
@@ -34,6 +36,9 @@ do{
                 break;
             case "3":
                 new TutorialGroupMaintainance().runTutorMaintenance();
+                break;
+            case "4":
+                new TutorManagementSystem().runTutorManager();
             default:
                 System.out.println("Invalid Input");
         }

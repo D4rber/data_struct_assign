@@ -52,21 +52,21 @@ public class TutorialGroupMaintainance {
         do {
             choice = tutorialGroupUI.getMenuChoice();
             switch (choice) {
-                case 0 ->
+                case 0 :
                     MessageUI.displayExitMessage();
-                case 1 ->
+                case 1 :
                     addNewStudent();
-                case 2 ->
+                case 2 :
                     removeStudent();
-                case 3 ->
+                case 3 :
                     changeTutorialGroup();
-                case 4 ->
+                case 4 :
                     findStudent();
-                case 5 ->
+                case 5 :
                     tutorialGroupUI.listAllStudents(listAllStudents());
-                case 6 ->
+                case 6 :
                     filter();
-                default ->
+                default :
                     MessageUI.displayInvalidChoiceMessage();
             }
         } while (choice != 0);
@@ -230,13 +230,13 @@ public class TutorialGroupMaintainance {
         do {
             choice = tutorialGroupUI.getChoice();
             switch (choice) {
-                case 0 ->
+                case 0 :
                     MessageUI.displayExitMessage();
-                case 1 ->
+                case 1 :
                     filterGroup();
-                case 2 ->
+                case 2 :
                     filterStudent();
-                default ->
+                default :
                     MessageUI.displayInvalidChoiceMessage();
             }
         } while (choice != 0);
