@@ -1,7 +1,8 @@
 package control;
+
 /**
  *
- * @author Low Su Yin 
+ * @author Low Su Yin
  */
 //import java.util.ArrayList;
 import adt.ArrayList;
@@ -81,7 +82,7 @@ public class AssignmentTeamManagement {
     }
 
     public static void saveTeamsToFile(ArrayList<AssignmentTeam> teams, String fileName) {
-        try ( PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
             for (int i = 0; i < teams.getNumberOfEntries(); i++) {
                 AssignmentTeam team = teams.getEntry(i + 1);
                 writer.println("Team: " + team.getTeamName());
@@ -101,7 +102,7 @@ public class AssignmentTeamManagement {
     //load from text file
     public ArrayList<AssignmentTeam> loadTeamsFromFile(String fileName) {
         ArrayList<AssignmentTeam> Teams = new ArrayList<>();
-        try ( BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             String currentTeamName = null;
             while ((line = reader.readLine()) != null) {
@@ -131,13 +132,13 @@ public class AssignmentTeamManagement {
 
         for (int i = 0; i < Teams.getNumberOfEntries(); i++) {
             AssignmentTeam team = Teams.getEntry(i + 1);
-            System.out.println("\n" + (i+1) + ". " + "Team: " + team.getTeamName());
+            System.out.println("\n" + (i + 1) + ". " + "Team: " + team.getTeamName());
 
             ArrayList<Student> students = team.getStudents();
             System.out.println("Student(s): ");
             for (int j = 0; j < students.getNumberOfEntries(); j++) {
                 Student student = students.getEntry(j + 1);
-                System.out.println("\t" + (j+1) + ". " + student.getStudentName() + "(ID: " + student.getStudentId() + ")");
+                System.out.println("\t" + (j + 1) + ". " + student.getStudentName() + "(ID: " + student.getStudentId() + ")");
             }
         }
     }
@@ -202,7 +203,7 @@ public class AssignmentTeamManagement {
                 removeAllStudents(loadedTeams, teamName);
                 saveTeamsToFile(loadedTeams, "team.txt");
                 display(loadedTeams);
-                return; 
+                return;
             }
         }
         System.out.println("Team '" + teamName + "' not found.");
@@ -235,7 +236,7 @@ public class AssignmentTeamManagement {
         ArrayList<AssignmentTeam> Teams = new ArrayList<>();
         Teams = loadTeamsFromFile("team.txt");
         display(Teams);
-        
+
         while (true) {
             System.out.println("\nEnter team name or 'exit' to finish: ");
             String teamName = scanner.nextLine();
@@ -286,7 +287,7 @@ public class AssignmentTeamManagement {
 
     public void removeStudent(ArrayList<AssignmentTeam> Teams, String teamName, String studentName) {
         loadTeamsFromFile("team.txt"); //load teams
-        
+
         display(Teams);
         // Find team
         for (int i = 0; i < Teams.getNumberOfEntries(); i++) {
@@ -295,9 +296,9 @@ public class AssignmentTeamManagement {
                 ArrayList<Student> students = team.getStudents();
 
                 for (int j = 0; j < students.getNumberOfEntries(); j++) {
-                    Student student = students.getEntry(j+1);
+                    Student student = students.getEntry(j + 1);
                     if (student.getStudentName().equals(studentName)) {
-                        students.remove(j+1);
+                        students.remove(j + 1);
                         System.out.println("Student: " + studentName + " removed from team '" + teamName + "'.");
                         saveTeamsToFile(Teams, "team.txt");
                         display(Teams);
@@ -332,7 +333,7 @@ public class AssignmentTeamManagement {
         System.out.println("List of Team Names:");
         for (int i = 0; i < Teams.getNumberOfEntries(); i++) {
             AssignmentTeam team = Teams.getEntry(i + 1);
-            System.out.println((i+1) + ". " + team.getTeamName());
+            System.out.println((i + 1) + ". " + team.getTeamName());
         }
     }
 
@@ -345,7 +346,7 @@ public class AssignmentTeamManagement {
                 ArrayList<Student> students = team.getStudents();
                 for (int j = 0; j < students.getNumberOfEntries(); j++) {
                     Student student = students.getEntry(j + 1);
-                    System.out.println("\t" + (j+1) + ". " + student.getStudentName() + "(ID: " + student.getStudentId() + ")");
+                    System.out.println("\t" + (j + 1) + ". " + student.getStudentName() + "(ID: " + student.getStudentId() + ")");
                 }
                 return;
             }
@@ -354,37 +355,37 @@ public class AssignmentTeamManagement {
     }
 
     public void generateTeamStatusReport(ArrayList<AssignmentTeam> Teams) {
-    int fullTeams = 0;
-    int notFullTeams = 0;
+        int fullTeams = 0;
+        int notFullTeams = 0;
 
-    System.out.println("Team Status Report:");
-    System.out.println("===================");
+        System.out.println("Team Status Report:");
+        System.out.println("===================");
 
-    for (int i = 0; i < Teams.getNumberOfEntries(); i++) {
-        AssignmentTeam team = Teams.getEntry(i+1);
-        int teamSize = team.getStudents().getNumberOfEntries();
-        System.out.println("Team: " + team.getTeamName());
-        System.out.println("Team Size: " + teamSize);
+        for (int i = 0; i < Teams.getNumberOfEntries(); i++) {
+            AssignmentTeam team = Teams.getEntry(i + 1);
+            int teamSize = team.getStudents().getNumberOfEntries();
+            System.out.println("Team: " + team.getTeamName());
+            System.out.println("Team Size: " + teamSize);
 
-        if (teamSize == AssignmentTeam.MAX_TEAM_SIZE) {
-            System.out.println("Status: Full");
-            fullTeams++;
-        } else {
-            System.out.println("Status: Not Full");
-            notFullTeams++;
+            if (teamSize == AssignmentTeam.MAX_TEAM_SIZE) {
+                System.out.println("Status: Full");
+                fullTeams++;
+            } else {
+                System.out.println("Status: Not Full");
+                notFullTeams++;
+            }
+
+            System.out.println("-------------------");
         }
 
-        System.out.println("-------------------");
+        int totalTeams = fullTeams + notFullTeams;
+        double fullPercentage = (double) fullTeams / totalTeams * 100;
+        double notFullPercentage = (double) notFullTeams / totalTeams * 100;
+
+        System.out.println("Full Teams: " + fullTeams + " (" + fullPercentage + "%)");
+        System.out.println("Not Full Teams: " + notFullTeams + " (" + notFullPercentage + "%)");
     }
 
-    int totalTeams = fullTeams + notFullTeams;
-    double fullPercentage = (double) fullTeams / totalTeams * 100;
-    double notFullPercentage = (double) notFullTeams / totalTeams * 100;
-
-    System.out.println("Full Teams: " + fullTeams + " (" + fullPercentage + "%)");
-    System.out.println("Not Full Teams: " + notFullTeams + " (" + notFullPercentage + "%)");
-}
-    
     public void menu() {
         int choice = 0;
         do {
@@ -463,5 +464,4 @@ public class AssignmentTeamManagement {
         } while (choice >= 1 && choice <= 9);
     }
 
-   
 }

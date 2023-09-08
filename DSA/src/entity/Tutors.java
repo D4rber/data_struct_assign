@@ -2,12 +2,10 @@ package entity;
 
 import java.util.Objects;
 
-
 /**
  *
  * @author Tongkitming
  */
-
 public class Tutors {
 
     private String tID;
@@ -15,7 +13,6 @@ public class Tutors {
     private String tSubject;
     private String tProgramme;
     private int Salary;
-
 
     public Tutors(String ID, String name, String subject, String tProgramme, int Salary) {
         this.tID = ID;
@@ -56,7 +53,7 @@ public class Tutors {
     public String getSubject() {
         return tSubject;
     }
-    
+
     public void settName(String tName) {
         this.tName = tName;
     }
@@ -75,34 +72,34 @@ public class Tutors {
             System.out.println("Invalid details format.");
         }
     }
-    
+
     @Override
-  public int hashCode() {
-    int hash = 3;
-    return hash;
-  }
-    
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
     @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Tutors other = (Tutors) obj;
+        return Objects.equals(this.tID, other.tID);
     }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final Tutors other = (Tutors) obj;
-    return Objects.equals(this.tID, other.tID);
-  }
-  
-  public boolean matchesCriteria(String criteria) {
+
+    public boolean matchesCriteria(String criteria) {
         return tName.contains(criteria);
     }
 
     @Override
     public String toString() {
-        return "\nTutor ID : "+ tID +"\nTutor Name : " + tName + "\nTutor Subject : "+ tSubject + "\nProgramme Teaching : "+ tProgramme +"\nSalary :"+Salary;
+        return "\nTutor ID : " + tID + "\nTutor Name : " + tName + "\nTutor Subject : " + tSubject + "\nProgramme Teaching : " + tProgramme + "\nSalary :" + Salary;
     }
 }

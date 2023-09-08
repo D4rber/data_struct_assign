@@ -11,9 +11,10 @@ import java.util.Objects;
  * @author Ho Wei Young
  */
 public class TutorialGroup {
+
     private String groupName;
     private int numOfStudent;
-    
+
     private String name;
     private int group;
     private int cgroup;
@@ -45,8 +46,8 @@ public class TutorialGroup {
     public void setNumOfStudent(int numOfStudent) {
         this.numOfStudent = numOfStudent;
     }
-    
-   public String getAction() {
+
+    public String getAction() {
         return action;
     }
 
@@ -70,7 +71,6 @@ public class TutorialGroup {
         this.dateTime = dateTime;
     }
 
-
     public int getCurrentNo() {
         return currentNo;
     }
@@ -78,7 +78,7 @@ public class TutorialGroup {
     public void setCurrentNo(int currentNo) {
         this.currentNo = currentNo;
     }
-    
+
     public int getCgroup() {
         return cgroup;
     }
@@ -102,30 +102,32 @@ public class TutorialGroup {
     public void setIsFull(boolean isFull) {
         this.isFull = isFull;
     }
-    
-    public TutorialGroup(){
+
+    public TutorialGroup() {
     }
-    public TutorialGroup(String action, String content, String dateTime){
+
+    public TutorialGroup(String action, String content, String dateTime) {
         this.action = action;
         this.content = content;
         this.dateTime = dateTime;
     }
-    public TutorialGroup(int curNo){
+
+    public TutorialGroup(int curNo) {
         this.currentNo = curNo;
     }
 
-    public TutorialGroup(int cgroup, int size, boolean isFull){
+    public TutorialGroup(int cgroup, int size, boolean isFull) {
         this.cgroup = cgroup;
         this.size = size;
         this.isFull = isFull;
     }
-    
-    public TutorialGroup(String name, String email){
+
+    public TutorialGroup(String name, String email) {
         this.name = name;
         this.email = email;
     }
-    
-    public TutorialGroup(String name, int group, String email){
+
+    public TutorialGroup(String name, int group, String email) {
         this.name = name;
         this.group = group;
         this.email = email;
@@ -154,46 +156,46 @@ public class TutorialGroup {
     public void setEmail(String email) {
         this.email = email;
     }
- 
-    
-   @Override
-  public int hashCode() {
-    int hash = 3;
-    return hash;
-  }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
     }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final TutorialGroup other = (TutorialGroup) obj;
-    if(!Objects.equals(this, other)) {
-      return false;
-    }
-    return true;
-  }
-  
- 
- @Override
-  public String toString() {
-    return String.format("%d Group  %-20s %20s", group, name, email);
-  }
 
-  public String customToString() {
-    return String.format("%dG  %17s %7s", cgroup, size, isFull);
-  }
-  public String currentNo(){
-      return String.format("%d students", currentNo);
-  }
-  public String record(){
-      return String.format("%-15s %-50s   %s", action, content, dateTime);
-  }
-    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TutorialGroup other = (TutorialGroup) obj;
+        if (!Objects.equals(this, other)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d Group  %-20s %20s", group, name, email);
+    }
+
+    public String customToString() {
+        return String.format("%dG  %17s %7s", cgroup, size, isFull);
+    }
+
+    public String currentNo() {
+        return String.format("%d students", currentNo);
+    }
+
+    public String record() {
+        return String.format("%-15s %-50s   %s", action, content, dateTime);
+    }
+
 }

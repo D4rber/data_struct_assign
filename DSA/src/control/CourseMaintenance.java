@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package control;
+
 import adt.*;
 import boundary.*;
 import entity.*;
@@ -11,26 +12,28 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import utility.MessageUI;
 import java.util.Scanner;
+
 /**
  *
  * @author YU YUNG JUN
  */
 public class CourseMaintenance {
+
     private ListInterface<Course> courseList = new ArrayList<>();
-    private ListInterface<Programme> programmeList = new ArrayList<>(); 
+    private ListInterface<Programme> programmeList = new ArrayList<>();
     private CourseMaintenanceUI courseUI = new CourseMaintenanceUI();
     private ProgrammeMaintenanceUI programmeUI = new ProgrammeMaintenanceUI();
     private Scanner scanner = new Scanner(System.in);
-    
-    public void runCourseMaintenance(){
-      courseList.add(new Course("AACS1123","Data Mining"));
-      String choice;
-        do{
+
+    public void runCourseMaintenance() {
+        courseList.add(new Course("AACS1123", "Data Mining"));
+        String choice;
+        do {
             choice = courseUI.getDisplayMenuChoice();
             switch (choice) {
                 case "1":
                     //Call add Course Function
-                    addCourse();   
+                    addCourse();
                     break;
                 case "2":
                     //Call remove course Function
@@ -66,158 +69,158 @@ public class CourseMaintenance {
                     break;
                 default:
                     MessageUI.displayRetypeMessage();
-        }
-    }while(!choice.equals("0"));
-}
-    public void addCourse(){
-    
+            }
+        } while (!choice.equals("0"));
+    }
+
+    public void addCourse() {
+
         Course cr = courseUI.inputCourseDetails();
-        
+
 //        if the course code are same it will display error message
-        if(courseList.getEntry(cr)!= null){
-            
+        if (courseList.getEntry(cr) != null) {
+
             MessageUI.displayCourseExistMessage();
-                          
-        }else{
+
+        } else {
 //            add the course data into course list
             courseList.add(cr);
-        
+
             System.out.println("\n");
-            MessageUI.displayCourseAddedMessage();  
+            MessageUI.displayCourseAddedMessage();
         }
     }
-    
-    public void deleteCourse(){
-       
+
+    public void deleteCourse() {
+
         courseUI.deleteUI();
-        
+
 //        print out the course in the courselist
-        for (int i=1; i < courseList.getNumberOfEntries()+1;i++){
-               System.out.println("\t "+ i + " > " + courseList.getEntry(i));
-           }
+        for (int i = 1; i < courseList.getNumberOfEntries() + 1; i++) {
+            System.out.println("\t " + i + " > " + courseList.getEntry(i));
+        }
         int deleteNo;
         deleteNo = courseUI.getDeleteNo();
 //        if the number insert are correct , the course will be deleted else display error mesej
         if (deleteNo >= 1 && deleteNo <= courseList.getNumberOfEntries()) {
-            System.out.println("\t"+courseList.getEntry(deleteNo));
+            System.out.println("\t" + courseList.getEntry(deleteNo));
             courseList.remove(deleteNo);
             MessageUI.displayCourseDeletedMessage();
         } else {
             MessageUI.displayInvalidNumMessage();
-            }
+        }
     }
-    
-    public void findCourse(){
+
+    public void findCourse() {
         String cCode;
         cCode = courseUI.fCourse();
-        
+
         Course cr = courseList.getEntry(new Course(cCode));
-        
-        if(cr != null){           
-            System.out.println("\t Course : \n\t" + cr);    
-        }else{
+
+        if (cr != null) {
+            System.out.println("\t Course : \n\t" + cr);
+        } else {
             MessageUI.displayNoCourseFoundMessage();
         }
     }
-    
-    public void amendCourse(){
+
+    public void amendCourse() {
         courseUI.amendUI();
-        
-        if(courseList.getNumberOfEntries() != 0){
-            for (int i=1; i < courseList.getNumberOfEntries()+1;i++){
-               System.out.println("\t "+ i + " > " + courseList.getEntry(i));
+
+        if (courseList.getNumberOfEntries() != 0) {
+            for (int i = 1; i < courseList.getNumberOfEntries() + 1; i++) {
+                System.out.println("\t " + i + " > " + courseList.getEntry(i));
             }
-                int amendNo;
-                amendNo = courseUI.getAmendNo();
-                  
-                //Course courseAmend = courseUI.aCourse(cCode);
-               
-                    if (amendNo >= 1 && amendNo <= courseList.getNumberOfEntries()) {
-                            Course cr = courseUI.amendC();
+            int amendNo;
+            amendNo = courseUI.getAmendNo();
 
-                            //courseList.replace(amendNo, courseAmend);
-                            courseList.replace(amendNo, cr);
-                            MessageUI.displayCourseModifiedMessage();
-                    }else{
-                            MessageUI.displayInvalidNumMessage();
-                    }
-            
+            //Course courseAmend = courseUI.aCourse(cCode);
+            if (amendNo >= 1 && amendNo <= courseList.getNumberOfEntries()) {
+                Course cr = courseUI.amendC();
 
-        } else{
-                MessageUI.displayNoCourseFoundMessage();
-              }
+                //courseList.replace(amendNo, courseAmend);
+                courseList.replace(amendNo, cr);
+                MessageUI.displayCourseModifiedMessage();
+            } else {
+                MessageUI.displayInvalidNumMessage();
+            }
+
+        } else {
+            MessageUI.displayNoCourseFoundMessage();
+        }
     }
-            
-    public void displayCourse(){
+
+    public void displayCourse() {
         courseUI.dCourse();
 //        if there is record in the course list it will display out else display  course found mesej
-        if(courseList.getNumberOfEntries()!=0){
-        for (int i = 0; i < courseList.getNumberOfEntries(); i++) {  
-           System.out.println("\t Course : \n\t" +courseList.getEntry(i + 1));
-        }
-        }else{
+        if (courseList.getNumberOfEntries() != 0) {
+            for (int i = 0; i < courseList.getNumberOfEntries(); i++) {
+                System.out.println("\t Course : \n\t" + courseList.getEntry(i + 1));
+            }
+        } else {
             MessageUI.displayNoCourseFoundMessage();
         }
     }
-     public void addProgrammeToCourse(){
-       
+
+    public void addProgrammeToCourse() {
+
         String cCode = programmeUI.addProgToCourse();
-        
+
         Course cr = courseList.getEntry(new Course(cCode));
-        if(cr != null){
-            
+        if (cr != null) {
+
             String pCode = programmeUI.aProgramme();
             Programme p = programmeList.getEntry(new Programme(pCode));
-            
+
             if (p == null) {
-            //if programme not found
-            //ask user to enter new programme  details
-            //assign new programme to programme list
-            //add to course
-            Programme programmeAdd = programmeUI.addProgramme(pCode);
-            //Course cr;
+                //if programme not found
+                //ask user to enter new programme  details
+                //assign new programme to programme list
+                //add to course
+                Programme programmeAdd = programmeUI.addProgramme(pCode);
+                //Course cr;
                 do {
                     cr = courseList.getEntry(new Course(cCode));
                 } while (cr == null);
-               
-            //assign programme to course
-            //--- this is the reason why ADT need to be inside ENTITY
-                    cr.addProgrammeToCourse(programmeAdd);
-                    MessageUI.displayProgAddedMessage();
+
+                //assign programme to course
+                //--- this is the reason why ADT need to be inside ENTITY
+                cr.addProgrammeToCourse(programmeAdd);
+                MessageUI.displayProgAddedMessage();
             } else {
-         
-                do{
+
+                do {
                     cr = courseList.getEntry(new Course(cCode));
                 } while (cr == null);
 
-            //assign programme to course
-            //--- this is the reason why ADT need to be inside ENTITY
-                    cr.addProgrammeToCourse(p);
-                    MessageUI.displayProgAddedMessage();
-                }
-            
-        }else{
+                //assign programme to course
+                //--- this is the reason why ADT need to be inside ENTITY
+                cr.addProgrammeToCourse(p);
+                MessageUI.displayProgAddedMessage();
+            }
+
+        } else {
             MessageUI.displayNoCourseFoundMessage();
         }
-        
-    } 
-     
-    public void deleteProgramme(){
-        
-       String cCode = programmeUI.deleteProgFromCourse();
-        
+
+    }
+
+    public void deleteProgramme() {
+
+        String cCode = programmeUI.deleteProgFromCourse();
+
         Course cr = courseList.getEntry(new Course(cCode));
-        if(cr != null){
-            
+        if (cr != null) {
+
             if (cr.getAllProgramme().getNumberOfEntries() != 0) {
                 System.out.println("\n");
                 System.out.println("\t Course Info : \n\t" + cr);
                 for (int i = 1; i < cr.getAllProgramme().getNumberOfEntries() + 1; i++) {
-                    System.out.println("\t "+ i + " > " + cr.getAllProgramme().getEntry(i));
+                    System.out.println("\t " + i + " > " + cr.getAllProgramme().getEntry(i));
                 }
                 int deleteNo;
                 deleteNo = courseUI.getDeleteNo();
-                
+
                 if (deleteNo >= 1 && deleteNo <= cr.getAllProgramme().getNumberOfEntries()) {
 //                    System.out.println("\t"+cr.getAllProgramme().getEntry(deleteNo));
                     cr.getAllProgramme().remove(deleteNo);
@@ -225,39 +228,39 @@ public class CourseMaintenance {
                 } else {
                     MessageUI.displayInvalidNumMessage();
                 }
-            }else {
-            MessageUI.displayRetypeMessage();
-        }
-        }else{
+            } else {
+                MessageUI.displayRetypeMessage();
+            }
+        } else {
             MessageUI.displayNoCourseFoundMessage();
         }
-            
+
     }
-    public void courseReport(){
+
+    public void courseReport() {
         courseUI.courseRep();
-        LocalDate currentDate = LocalDate.now();   
-   
+        LocalDate currentDate = LocalDate.now();
+
         // Define date and time format patterns
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        
+
         // Format the current date and time as strings
         String formattedDate = currentDate.format(dateFormatter);
-        
+
         // Print the current date and  separately
         System.out.println("Date: " + formattedDate + "\n");
-      int numberOfEntries = courseList.getNumberOfEntries();
-        if(courseList.getNumberOfEntries()!=0){
-            
-            for (int i = 0; i < courseList.getNumberOfEntries(); i++) {  
-           
-                System.out.println("\t Course : \n\t" +courseList.getEntry(i + 1));
+        int numberOfEntries = courseList.getNumberOfEntries();
+        if (courseList.getNumberOfEntries() != 0) {
+
+            for (int i = 0; i < courseList.getNumberOfEntries(); i++) {
+
+                System.out.println("\t Course : \n\t" + courseList.getEntry(i + 1));
                 System.out.println("\t" + courseList.getEntry(i + 1).getAllProgramme());
-                
+
             }
-        }else{
-            MessageUI.displayNoCourseFoundMessage();            
+        } else {
+            MessageUI.displayNoCourseFoundMessage();
         }
         System.out.println("\n\tCourse added today : " + numberOfEntries);
     }
-    }
-
+}

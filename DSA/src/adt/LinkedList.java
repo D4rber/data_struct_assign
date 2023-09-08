@@ -8,7 +8,6 @@ import java.util.function.Predicate;
  *
  * @author Tongkitming
  */
-
 public class LinkedList<T> implements ListInterface<T> {
 
     private Node firstNode;
@@ -20,23 +19,22 @@ public class LinkedList<T> implements ListInterface<T> {
 
     @Override
     public boolean add(T newEntry) {
-        Node newNode = new Node(newEntry);	
+        Node newNode = new Node(newEntry);
 
         if (isEmpty()) {
             firstNode = newNode;
-        } else {                        
-            Node currentNode = firstNode;	
-            while (currentNode.next != null) { 
+        } else {
+            Node currentNode = firstNode;
+            while (currentNode.next != null) {
                 currentNode = currentNode.next;
             }
-            currentNode.next = newNode; 
+            currentNode.next = newNode;
         }
 
         numOfEntry++;
         return true;
     }
-    
-    
+
     @Override
     public boolean add(int newPosition, T newEntry) {
         boolean isSuccessful = true;
@@ -44,17 +42,17 @@ public class LinkedList<T> implements ListInterface<T> {
         if ((newPosition >= 1) && (newPosition <= numOfEntry + 1)) {
             Node newNode = new Node(newEntry);
 
-            if (isEmpty() || (newPosition == 1)) { 
+            if (isEmpty() || (newPosition == 1)) {
                 newNode.next = firstNode;
                 firstNode = newNode;
-            } else {							
+            } else {
                 Node nodeBefore = firstNode;
                 for (int i = 1; i < newPosition - 1; ++i) {
-                    nodeBefore = nodeBefore.next;		
+                    nodeBefore = nodeBefore.next;
                 }
 
-                newNode.next = nodeBefore.next;	
-                nodeBefore.next = newNode;		
+                newNode.next = nodeBefore.next;
+                nodeBefore.next = newNode;
             }
 
             numOfEntry++;
@@ -64,15 +62,13 @@ public class LinkedList<T> implements ListInterface<T> {
 
         return isSuccessful;
     }
-    
-    
+
     @Override
     public final void clear() {
         firstNode = null;      //nothing in node
         numOfEntry = 0;
     }
-    
-    
+
     @Override
     public boolean isEmpty() {
         boolean result;
@@ -81,40 +77,39 @@ public class LinkedList<T> implements ListInterface<T> {
 
         return result;
     }
-    
 
     @Override
     public T remove(int givenPosition) {
-        T result = null;               
+        T result = null;
 
         if ((givenPosition >= 1) && (givenPosition <= numOfEntry)) {
-            if (givenPosition == 1) {      
-                result = firstNode.data;    
+            if (givenPosition == 1) {
+                result = firstNode.data;
                 firstNode = firstNode.next;
-            } else {                        
+            } else {
                 Node nodeBefore = firstNode;
                 for (int i = 1; i < givenPosition - 1; ++i) {
-                    nodeBefore = nodeBefore.next;	
+                    nodeBefore = nodeBefore.next;
                 }
-                result = nodeBefore.next.data;  
-                nodeBefore.next = nodeBefore.next.next;	
-            } 														
+                result = nodeBefore.next.data;
+                nodeBefore.next = nodeBefore.next.next;
+            }
             numOfEntry--;
         }
 
-        return result; 
+        return result;
     }
-    
-     @Override
+
+    @Override
     public boolean replace(int givenPosition, T newEntry) {
         boolean isSuccessful = true;
 
         if ((givenPosition >= 1) && (givenPosition <= numOfEntry)) {
             Node currentNode = firstNode;
             for (int i = 0; i < givenPosition - 1; ++i) {
-                currentNode = currentNode.next;		
+                currentNode = currentNode.next;
             }
-            currentNode.data = newEntry;	
+            currentNode.data = newEntry;
         } else {
             isSuccessful = false;
         }
@@ -122,10 +117,6 @@ public class LinkedList<T> implements ListInterface<T> {
         return isSuccessful;
     }
 
-    
- 
-
-    
     @Override
     public void listAll() {
         Node current = firstNode;
@@ -134,22 +125,20 @@ public class LinkedList<T> implements ListInterface<T> {
             current = current.next;
         }
     }
-    
+
     @Override
     public T getEntry(int givenPosition) {
-    if ((givenPosition >= 1) && (givenPosition <= numOfEntry)) {
-        Node currentNode = firstNode;
-        for (int i = 1; i < givenPosition; ++i) {
-            currentNode = currentNode.next; 
+        if ((givenPosition >= 1) && (givenPosition <= numOfEntry)) {
+            Node currentNode = firstNode;
+            for (int i = 1; i < givenPosition; ++i) {
+                currentNode = currentNode.next;
+            }
+            return currentNode.data;
+        } else {
+            throw new IndexOutOfBoundsException("Invalid position");
         }
-        return currentNode.data; 
-    } else {
-        throw new IndexOutOfBoundsException("Invalid position");
     }
-}
 
-    
-    
     @Override
     public boolean contains(T anEntry) {
         boolean found = false;
@@ -164,17 +153,17 @@ public class LinkedList<T> implements ListInterface<T> {
         }
         return found;
     }
-    
+
     @Override
     public int getNumberOfEntries() {
         return numOfEntry;
     }
-    
+
     @Override
     public boolean isFull() {
         return false;
     }
-    
+
     @Override
     public String toString() {
         String outputStr = "";
@@ -186,9 +175,6 @@ public class LinkedList<T> implements ListInterface<T> {
         return outputStr;
     }
 
-    
-    
-    
     @Override
     public void filter(Predicate<T> predicate) {
         Node current = firstNode;
@@ -245,7 +231,6 @@ public class LinkedList<T> implements ListInterface<T> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
     private class Node {
 
         private T data;
@@ -262,5 +247,3 @@ public class LinkedList<T> implements ListInterface<T> {
         }
     }
 }
-
-

@@ -13,8 +13,6 @@ public class TutorManagementUI {
 
     Scanner scanner = new Scanner(System.in);
 
-   
-
     public int getSelection() {
 
         while (true) {
@@ -34,13 +32,13 @@ public class TutorManagementUI {
             if (scanner.hasNextInt()) {
                 int choice = scanner.nextInt();
                 scanner.nextLine();
-              
+
                 return choice;
             } else {
                 System.out.println("Invalid input. Please enter a valid integer.");
-                scanner.nextLine(); 
+                scanner.nextLine();
             }
- 
+
         }
 
     }

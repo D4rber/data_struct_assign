@@ -6,7 +6,6 @@ import java.util.EmptyStackException;
  *
  * @author Tongkitming
  */
-
 public class LinkedStack<T> implements StackInterface<T> {
 
     private Node topNode;
@@ -50,8 +49,6 @@ public class LinkedStack<T> implements StackInterface<T> {
         return top; // Return the removed element
 
     }
-    
-
 
     @Override
     public void clear() {

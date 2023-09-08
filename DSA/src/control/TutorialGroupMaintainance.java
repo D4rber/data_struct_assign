@@ -59,31 +59,31 @@ public class TutorialGroupMaintainance {
             choice = tutorialGroupUI.getMenuChoice();
 
             switch (choice) {
-                case 0 :
+                case 0:
                     MessageUI.displayExitMessage();
                     break;
-                case 1 :
+                case 1:
                     addNewStudent();
                     break;
-                case 2 :
+                case 2:
                     removeStudent();
                     break;
-                case 3 :
+                case 3:
                     changeTutorialGroup();
                     break;
-                case 4 :
+                case 4:
                     tutorialGroupUI.foundStudent(returnStudent());
                     break;
-                case 5 :
+                case 5:
                     tutorialGroupUI.listAllStudents(listAllStudents());
                     break;
-                case 6 :
+                case 6:
                     filter();
                     break;
-                case 7 :
+                case 7:
                     reportTutorialGroup();
                     break;
-                default :
+                default:
                     MessageUI.displayInvalidChoiceMessage();
                     break;
             }
@@ -151,6 +151,7 @@ public class TutorialGroupMaintainance {
         return name;
     }
 //
+
     public String returnStudent() {
         boolean isValid = false;
         String string = null;
@@ -312,9 +313,9 @@ public class TutorialGroupMaintainance {
         }
         if (!(choice == 0)) {
             String formattedDateTime = currentDateTime.format(formatter);
-        recordList.add(new TutorialGroup("filter", record, formattedDateTime));
+            recordList.add(new TutorialGroup("filter", record, formattedDateTime));
         }
-        
+
     }
 
     public void filterStudent() {

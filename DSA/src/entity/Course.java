@@ -13,32 +13,34 @@ import adt.ListInterface;
  * @author YU YUNG JUN
  */
 public class Course {
+
     private String cCode;
     private String cName;
     private ListInterface<Programme> cProg;
-    
-  public Course(){
-      this.cCode = null;
-      this.cName = null;
-      this.cProg = new ArrayList<>();
-           }
-    
-    public Course(String cCode,String cName){
-    this.cCode = cCode;
-    this.cName = cName;
-    this.cProg = new ArrayList<>();
+
+    public Course() {
+        this.cCode = null;
+        this.cName = null;
+        this.cProg = new ArrayList<>();
+    }
+
+    public Course(String cCode, String cName) {
+        this.cCode = cCode;
+        this.cName = cName;
+        this.cProg = new ArrayList<>();
     }
 
     public Course(String cCode) {
-         this.cCode = cCode;
-         this.cProg = new ArrayList<>();
+        this.cCode = cCode;
+        this.cProg = new ArrayList<>();
     }
+
     public Course(String cCode, String cName, ListInterface<Programme> prog) {
         this.cCode = cCode;
         this.cName = cName;
         this.cProg = prog;
     }
- 
+
     public String getcCode() {
         return cCode;
     }
@@ -54,15 +56,16 @@ public class Course {
     public void setcName(String cName) {
         this.cName = cName;
     }
- 
+
     public ListInterface<Programme> getAllProgramme() {
         return cProg;
     }
-    
+
     public void addProgrammeToCourse(Programme prog) {
         cProg.add(prog);
     }
-     @Override
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -84,8 +87,9 @@ public class Course {
 
         return true;
     }
-   @Override
-    public String toString(){
+
+    @Override
+    public String toString() {
         return String.format(" Course Code : %-10s Course Name : %-30s", cCode, cName);
-    } 
+    }
 }
