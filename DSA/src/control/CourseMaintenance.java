@@ -131,9 +131,10 @@ public class CourseMaintenance {
                 amendNo = courseUI.getAmendNo();
                   
                 //Course courseAmend = courseUI.aCourse(cCode);
-                Course cr = courseUI.amendC();
                
                     if (amendNo >= 1 && amendNo <= courseList.getNumberOfEntries()) {
+                            Course cr = courseUI.amendC();
+
                             //courseList.replace(amendNo, courseAmend);
                             courseList.replace(amendNo, cr);
                             MessageUI.displayCourseModifiedMessage();

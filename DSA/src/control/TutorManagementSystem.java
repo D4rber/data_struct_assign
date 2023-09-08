@@ -26,6 +26,8 @@ public class TutorManagementSystem {
         UndoRedoManager<ListInterface<Tutors>> undoRedoManager = new UndoRedoManager<>();
         StackInterface<Tutors> tutorStack = tutor.initializeTutorsS();
         StackInterface<Tutors> previousStateUndo = new LinkedStack<>();
+        previousStateUndo.clear();
+        
         int choice;
         do {
             choice = ui.getSelection();
@@ -72,7 +74,7 @@ public class TutorManagementSystem {
                 case 4:
                     tutorList.listAll();
 
-                    int positionToReplace =ui.inputPosition();
+                    int positionToReplace =ui.inputPositionID();
 
                     Tutors newTutorData = ui.inputTutorDetails();
                     if (tutorList.replace(positionToReplace, newTutorData)) {
@@ -97,16 +99,18 @@ public class TutorManagementSystem {
                     break;
 
                 case 8:
-                    if (previousStateUndo != null) {
+                    if (previousStateUndo.getNumOfEntry()> 0 && previousStateUndo.getNumOfEntry() < 2) {
                         tutorList.clear();
                         tutorStack.pop();
                         while (tutorStack.getNumOfEntry()!= 0)
                         tutorList.add(tutorStack.pop());
+                        tutorStack = tutor.initializeTutorsS();
                         tutorList.listAll();
+                        previousStateUndo.pop();
                         System.out.println("Undo successful.");
                     } else {
-                        System.out.println("Nothing to undo.");
-                    }
+                        System.out.println("Cannot to undo please remove the tutor");
+                    } 
                     break;
 
                 case 9:

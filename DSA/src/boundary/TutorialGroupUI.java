@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class TutorialGroupUI {
 
-    private final Scanner scanner;
+       private final Scanner scanner;
 
     public TutorialGroupUI() {
         // Initialize the scanner in the constructor
@@ -45,13 +45,31 @@ public class TutorialGroupUI {
         System.out.println(string);
     }
     public void listReport(String outputStr, int totalNum, String record) {
-        System.out.println("\n=== List of Groups === \n"
+        System.out.println("     ------------------"
+                         + "          REPORT       "
+                + "     ------------------"
+                + "\n=== List of Groups === \n"
                 + "Tutorial Group   Max.No           Current.No\n" + outputStr + "\n Total student : " + totalNum + ""
                         + "\n\n === Record Tutorial group === "
                         + "\n Action             Content"
                         + "\n" + record);
     }
 
+    public void addHeader(){
+        System.out.println("\n=== Add Student === \n");
+    }
+    public void removeHeader(){
+        System.out.println("\n=== Remove Student === \n");
+    }
+        public void changeHeader(){
+        System.out.println("\n=== Change Group === \n");
+    }
+                public void findHeader(){
+        System.out.println("\n=== Change Group === \n");
+    }
+       public void filterHeader(){
+        System.out.println("\n=== Filter === \n");
+    }         
     public void listGroups(String outputStr) {
         System.out.println("\n=== List of Groups === \n"
                 + "Tutorial Group   Max.No\n" + outputStr);

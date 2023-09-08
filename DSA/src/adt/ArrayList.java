@@ -296,8 +296,6 @@ public class ArrayList<T> implements ListInterface<T>, Serializable{
         
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < (n - i); j++) {
-                System.out.println(entry[j-1]);
-                System.out.println(array[j - 1]);
                 if (entry[j - 1] > entry[j]) {
                     //swap elements  
                     temp = array[j - 1];
@@ -309,9 +307,7 @@ public class ArrayList<T> implements ListInterface<T>, Serializable{
                 }
             }
         }
-        for (int i = 0; i < n; i++) {
-            System.out.println(array[i]);
-        }
+
     }
     
 }
