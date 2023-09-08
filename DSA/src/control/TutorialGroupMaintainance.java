@@ -40,10 +40,10 @@ public class TutorialGroupMaintainance {
         tutorialGroupList.add(new TutorialGroup("Olivia Harris", 3, "oliviaharris@example.com"));
         tutorialGroupList.add(new TutorialGroup("James Miller", 4, "jamesmiller@example.com"));
         tutorialGroupList.add(new TutorialGroup("Sophia Anderson", 4, "sophiaanderson@example.com"));
-        tutorialGroupList.add(new TutorialGroup("howei8", 5, "howei603@gmail.com"));
-        tutorialGroupList.add(new TutorialGroup("howeiy8", 5, "howeiy604@gmail.com"));
-        tutorialGroupList.add(new TutorialGroup("howei9", 6, "howei603@gmail.com"));
-        tutorialGroupList.add(new TutorialGroup("howeiy9", 1, "howeiy604@gmail.com"));
+        tutorialGroupList.add(new TutorialGroup("haowai", 5, "haowai603@gmail.com"));
+        tutorialGroupList.add(new TutorialGroup("Yao Jin", 5, "yaojin604@gmail.com"));
+        tutorialGroupList.add(new TutorialGroup("Sashi", 6, "sashi603@gmail.com"));
+        tutorialGroupList.add(new TutorialGroup("OmyGod", 1, "omygod604@gmail.com"));
         gSize.add(new TutorialGroup(1, 5, false));
         gSize.add(new TutorialGroup(2, 5, false));
         gSize.add(new TutorialGroup(3, 5, false));
@@ -61,22 +61,31 @@ public class TutorialGroupMaintainance {
             switch (choice) {
                 case 0 :
                     MessageUI.displayExitMessage();
+                    break;
                 case 1 :
                     addNewStudent();
+                    break;
                 case 2 :
                     removeStudent();
+                    break;
                 case 3 :
                     changeTutorialGroup();
+                    break;
                 case 4 :
                     tutorialGroupUI.foundStudent(returnStudent());
+                    break;
                 case 5 :
                     tutorialGroupUI.listAllStudents(listAllStudents());
+                    break;
                 case 6 :
                     filter();
+                    break;
                 case 7 :
                     reportTutorialGroup();
+                    break;
                 default :
                     MessageUI.displayInvalidChoiceMessage();
+                    break;
             }
         } while (choice != 0);
     }
@@ -173,28 +182,28 @@ public class TutorialGroupMaintainance {
 
 //Add a student to a tutorial group
     private void addNewStudent() {
-
+        tutorialGroupUI.addHeader();
+String lastList = "";
         for (int i = 1; i < gSize.getNumberOfEntries(); i++) {
             if (!gSize.getEntry(i).isIsFull()) {
                 TutorialGroup newStudent = tutorialGroupUI.inputTutorialGroupDetails(i);
                 tutorialGroupList.add(newStudent);
-
+                lastList = (tutorialGroupList.getEntry(tutorialGroupList.getNumberOfEntries()) + "\n");
                 break;
             }
-            String lastList = (tutorialGroupList.getEntry(tutorialGroupList.getNumberOfEntries()) + "\n");
-            String formattedDateTime = currentDateTime.format(formatter);
-            recordList.add(new TutorialGroup("add", lastList, formattedDateTime));
-
-            tutorialGroupDAO.saveToFile(tutorialGroupList);
-//        tutorialGroupUI.listAllStudents(listAllStudents());
-            tutorialGroupList.bubbleSort(sortList());
+tutorialGroupDAO.saveToFile(tutorialGroupList);
+            
         }
+        String formattedDateTime = currentDateTime.format(formatter);
+        recordList.add(new TutorialGroup("add", lastList, formattedDateTime));
+        tutorialGroupList.bubbleSort(sortList());
     }
 
     //Remove a student from a tutorial group
     public void removeStudent() {
         String record = "";
         tutorialGroupUI.listAllStudents(listAllStudents());
+        tutorialGroupUI.removeHeader();
         String name = findStudent();
         for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
             if (name.equals(tutorialGroupList.getEntry(i).getName())) {
@@ -214,15 +223,15 @@ public class TutorialGroupMaintainance {
 //Change the tutorial group for a student.
     public void changeTutorialGroup() {
         String record = "";
+        
         tutorialGroupUI.listAllStudents(listAllStudents());
+        tutorialGroupUI.changeHeader();
         String name = findStudent();
         boolean isValid = false;
         for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
             if (name.equals(tutorialGroupList.getEntry(i).getName())) {
                 int num = 1;
                 int pInt = 0;
-                System.out.println("test");
-                System.out.println(gSize.getEntry(num).isIsFull());
                 while (!isValid) {
                     num = tutorialGroupUI.changeGroup(tutorialGroupList.getEntry(i), gSize.getNumberOfEntries());
                     if (num == 0) {
@@ -249,13 +258,14 @@ public class TutorialGroupMaintainance {
     }
 
 //Find a student in a tutorial group
-    public void foundStudent() {
-        tutorialGroupUI.listAllStudents(listAllStudents());
-        String name = findStudent();
-        for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
-            System.out.println(tutorialGroupList.getEntry(i));
-        }
-    }
+//    public void foundStudent() {
+//        tutorialGroupUI.listAllStudents(listAllStudents());
+//        
+//        String name = findStudent();
+//        for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
+//            System.out.println(tutorialGroupList.getEntry(i));
+//        }
+//    }
 
 //List all students in a tutorial group    
     public String listAllStudents() {
@@ -292,18 +302,23 @@ public class TutorialGroupMaintainance {
 
 //Filter tutorial groups based on criteria
     public void filter() {
+        tutorialGroupUI.filterHeader();
         int choice;
         do {
             choice = tutorialGroupUI.getChoice();
             switch (choice) {
-                case 0 :
+                case 0:
                     MessageUI.displayExitMessage();
+                    break;
                 case 1 :
                     filterGroup();
+                    break;
                 case 2 :
                     filterStudent();
+                    break;
                 default :
                     MessageUI.displayInvalidChoiceMessage();
+                    break;
             }
         } while (choice != 0);
 
@@ -360,9 +375,7 @@ public class TutorialGroupMaintainance {
 
     public String record() {
         String outputStr = "";
-        System.out.println("hello11");
         for (int i = 1; i <= recordList.getNumberOfEntries(); i++) {
-            System.out.println(recordList.getEntry(i));
             outputStr += recordList.getEntry(i).record() + "\n";
         }
         return outputStr;
