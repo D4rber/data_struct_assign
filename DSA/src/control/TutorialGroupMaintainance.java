@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  *
- * @author howei
+ * @author howeiyoung
  */
 public class TutorialGroupMaintainance {
 
@@ -90,6 +90,13 @@ public class TutorialGroupMaintainance {
         } while (choice != 0);
     }
 
+    //Main
+    public static void main(String[] args) {
+        TutorialGroupMaintainance tgMaintenance = new TutorialGroupMaintainance();
+        tgMaintenance.runTutorMaintenance();
+    }
+
+//SUBCLASS
     private int[] sortList() {
         int num;
         int[] numAry = new int[tutorialGroupList.getNumberOfEntries()]; // Initialize the array with the appropriate size
@@ -100,13 +107,6 @@ public class TutorialGroupMaintainance {
         return numAry;
     }
 
-//main
-    public static void main(String[] args) {
-        TutorialGroupMaintainance tgMaintenance = new TutorialGroupMaintainance();
-        tgMaintenance.runTutorMaintenance();
-    }
-
-//SUBCLASS
     private int[] countStudent() {
         int[] count = new int[10];
         int total = 0;
@@ -122,7 +122,6 @@ public class TutorialGroupMaintainance {
     }
 
     private void groupIsFull(int[] count) {
-
         for (int i = 1; i < gSize.getNumberOfEntries(); i++) {
             if (count[i] == gSize.getEntry(i).getSize()) {
                 gSize.getEntry(i).setIsFull(true);
@@ -131,18 +130,15 @@ public class TutorialGroupMaintainance {
             }
         }
     }
+
     public String findStudent() {
         boolean isValid = false;
         String name = null;
-
         while (!isValid) {
             name = tutorialGroupUI.inputTutorialGroupName();
-
             for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
                 if (name.equals(tutorialGroupList.getEntry(i).getName())) {
-                    
                     isValid = true;
-
                     break;
                 } else if ("quit".equals(name)) {
                     name = null;
@@ -154,22 +150,19 @@ public class TutorialGroupMaintainance {
         }
         return name;
     }
+//
     public String returnStudent() {
         boolean isValid = false;
-        String name = null;
-        String string = "";
-
+        String string = null;
         while (!isValid) {
-            name = tutorialGroupUI.inputTutorialGroupName();
-
+            String name = tutorialGroupUI.inputTutorialGroupName();
             for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
                 if (name.equals(tutorialGroupList.getEntry(i).getName())) {
-                    string=(tutorialGroupList.getEntry(i)+"\n");
+                    string = (tutorialGroupList.getEntry(i) + "\n");
                     isValid = true;
-
                     break;
                 } else if ("quit".equals(name)) {
-                    name = null;
+                    isValid = true;
                     break;
                 } else if (tutorialGroupList.getNumberOfEntries() == i) {
                     MessageUI.nothingFound();
@@ -178,28 +171,25 @@ public class TutorialGroupMaintainance {
         }
         return string;
     }
-    //
 
 //Add a student to a tutorial group
     private void addNewStudent() {
         tutorialGroupUI.addHeader();
-String lastList = "";
+        String lastList = "";
         for (int i = 1; i < gSize.getNumberOfEntries(); i++) {
             if (!gSize.getEntry(i).isIsFull()) {
                 TutorialGroup newStudent = tutorialGroupUI.inputTutorialGroupDetails(i);
                 tutorialGroupList.add(newStudent);
-                lastList = (tutorialGroupList.getEntry(tutorialGroupList.getNumberOfEntries()) + "\n");
+                lastList = (tutorialGroupList.getEntry(tutorialGroupList.getNumberOfEntries()) + "");
                 break;
             }
-tutorialGroupDAO.saveToFile(tutorialGroupList);
-            
+//            tutorialGroupDAO.saveToFile(tutorialGroupList);
         }
         String formattedDateTime = currentDateTime.format(formatter);
         recordList.add(new TutorialGroup("add", lastList, formattedDateTime));
-        tutorialGroupList.bubbleSort(sortList());
     }
 
-    //Remove a student from a tutorial group
+//Remove a student from a tutorial group
     public void removeStudent() {
         String record = "";
         tutorialGroupUI.listAllStudents(listAllStudents());
@@ -208,22 +198,18 @@ tutorialGroupDAO.saveToFile(tutorialGroupList);
         for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
             if (name.equals(tutorialGroupList.getEntry(i).getName())) {
                 if (tutorialGroupUI.comfirmationRemove(tutorialGroupList.getEntry(i))) {
-                    record = (tutorialGroupList.getEntry(i) + "\n");
+                    record = (tutorialGroupList.getEntry(i) + "");
                     tutorialGroupList.remove(i);
                 }
             }
-
-
-//            tutorialGroupUI.listAllStudents(listAllStudents());
         }
-             String formattedDateTime = currentDateTime.format(formatter);
-            recordList.add(new TutorialGroup("remove", record, formattedDateTime));
+        String formattedDateTime = currentDateTime.format(formatter);
+        recordList.add(new TutorialGroup("remove", record, formattedDateTime));
     }
 
 //Change the tutorial group for a student.
     public void changeTutorialGroup() {
         String record = "";
-        
         tutorialGroupUI.listAllStudents(listAllStudents());
         tutorialGroupUI.changeHeader();
         String name = findStudent();
@@ -247,9 +233,8 @@ tutorialGroupDAO.saveToFile(tutorialGroupList);
                 if (!(pInt == 0)) {
                     tutorialGroupList.getEntry(i).setNumber(num);
                     tutorialGroupUI.displayChangeGroup(tutorialGroupList.getEntry(i), pInt);
-                    record = (tutorialGroupUI.returnChangeGroup(tutorialGroupList.getEntry(i), pInt) + "\n");
+                    record = (tutorialGroupUI.returnChangeGroup(tutorialGroupList.getEntry(i), pInt) + "");
                     groupIsFull(countStudent());
-                    tutorialGroupList.bubbleSort(sortList());
                 }
             }
         }
@@ -257,30 +242,18 @@ tutorialGroupDAO.saveToFile(tutorialGroupList);
         recordList.add(new TutorialGroup("change", record, formattedDateTime));
     }
 
-//Find a student in a tutorial group
-//    public void foundStudent() {
-//        tutorialGroupUI.listAllStudents(listAllStudents());
-//        
-//        String name = findStudent();
-//        for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
-//            System.out.println(tutorialGroupList.getEntry(i));
-//        }
-//    }
-
 //List all students in a tutorial group    
     public String listAllStudents() {
+        tutorialGroupList.bubbleSort(sortList());
         String outputStr = "";
         for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
-
             outputStr += tutorialGroupList.getEntry(i) + "\n";
         }
         return outputStr;
     }
 
-//
     public String listStudents() {
         String outputStr = "";
-
         int choice = tutorialGroupUI.chooseGroup(gSize.getNumberOfEntries());
         for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
             if (tutorialGroupList.getEntry(i).getNumber() == choice) {
@@ -293,7 +266,6 @@ tutorialGroupDAO.saveToFile(tutorialGroupList);
 
     public String listGroups() {
         String outputStr = "";
-
         for (int i = 1; i <= gSize.getNumberOfEntries(); i++) {
             outputStr += gSize.getEntry(i).customToString() + "\n";
         }
@@ -310,13 +282,13 @@ tutorialGroupDAO.saveToFile(tutorialGroupList);
                 case 0:
                     MessageUI.displayExitMessage();
                     break;
-                case 1 :
+                case 1:
                     filterGroup();
                     break;
-                case 2 :
+                case 2:
                     filterStudent();
                     break;
-                default :
+                default:
                     MessageUI.displayInvalidChoiceMessage();
                     break;
             }
@@ -326,35 +298,32 @@ tutorialGroupDAO.saveToFile(tutorialGroupList);
 
     public void filterGroup() {
         String record = "";
-
         tutorialGroupUI.listGroups(listGroups());
         int choice = tutorialGroupUI.filterGroup();
         for (int i = 1; i <= gSize.getNumberOfEntries(); i++) {
             if (gSize.getEntry(i).getCgroup() == choice) {
                 int pInt = gSize.getEntry(i).getSize();
                 gSize.getEntry(i).setSize(tutorialGroupUI.changeSize());
-                if (!(pInt == 0)) {
+                if (!(choice == 0)) {
                     tutorialGroupUI.displayChangeSize(i, pInt, gSize.getEntry(i).getSize());
                     record = tutorialGroupUI.recordChangeSize(i, pInt, gSize.getEntry(i).getSize());
                 }
             }
-
         }
-        String formattedDateTime = currentDateTime.format(formatter);
+        if (!(choice == 0)) {
+            String formattedDateTime = currentDateTime.format(formatter);
         recordList.add(new TutorialGroup("filter", record, formattedDateTime));
+        }
+        
     }
 
     public void filterStudent() {
         String record = "";
         tutorialGroupUI.listStudent(listStudents());
-
         String name = findStudent();
-
         for (int i = 1; i <= tutorialGroupList.getNumberOfEntries(); i++) {
             if (tutorialGroupList.getEntry(i).getName().equals(name)) {
-
                 TutorialGroup filterStudent = tutorialGroupUI.filterStudent(i);
-
                 tutorialGroupList.replace(i, filterStudent);
                 tutorialGroupUI.displayFilterStudent(name, filterStudent.getName());
                 record = tutorialGroupUI.recordFilterStudent(name, filterStudent.getName());
@@ -364,9 +333,9 @@ tutorialGroupDAO.saveToFile(tutorialGroupList);
         recordList.add(new TutorialGroup("filter", record, formattedDateTime));
     }
 
+//Report
     public String listReport() {
         String outputStr = "";
-
         for (int i = 1; i <= gSize.getNumberOfEntries(); i++) {
             outputStr += gSize.getEntry(i).customToString() + "     " + gSize.getEntry(i).currentNo() + "\n";
         }
@@ -382,6 +351,6 @@ tutorialGroupDAO.saveToFile(tutorialGroupList);
     }
 
     public void reportTutorialGroup() {
-        tutorialGroupUI.listReport(listReport(), tutorialGroupList.getNumberOfEntries(),record());
+        tutorialGroupUI.listReport(listReport(), tutorialGroupList.getNumberOfEntries(), record());
     }
 }

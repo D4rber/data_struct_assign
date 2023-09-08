@@ -278,15 +278,9 @@ public class ArrayList<T> implements ListInterface<T>, Serializable{
         }
     }
 
-    @Override
-    public T find(String tutorName) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
-    @Override
-    public void filter(String criteria) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
+   
 
     @Override
     public void bubbleSort(int[] entry) {

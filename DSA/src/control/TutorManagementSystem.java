@@ -60,17 +60,26 @@ public class TutorManagementSystem {
                     break;
 
                 case 3:
-                    String tutorName = ui.inputTutorName();
-                    Tutors foundTutor = tutorList.find(tutorName);
+                    String tutorNameToFind = ui.inputTutorName(); // Assuming you have a method to input the tutor name
 
-                    if (foundTutor != null) {
-                        System.out.println("Found Tutor: " + foundTutor);
-                    } else {
+                    boolean tutorFound = false;
+
+                    // Iterate through the tutorList to find the tutor by name
+                    for (int i = 1; i <= tutorList.getNumberOfEntries(); i++) {
+                        Tutors tutorFind = tutorList.getEntry(i);
+                        if (tutorFind.getName().equalsIgnoreCase(tutorNameToFind)) {
+                            System.out.println("Found Tutor: " + tutorFind);
+                            tutorFound = true;
+                            break; // Exit the loop once a tutor is found
+                        }
+                    }
+
+                    if (!tutorFound) {
                         System.out.println("Tutor not found.");
                     }
 
                     break;
-
+                    
                 case 4:
                     tutorList.listAll();
 
@@ -91,8 +100,26 @@ public class TutorManagementSystem {
                     ui.promptEnterKey();
                     break;
                 case 6:
-                    String filterSubject = ui.inputSubject();
-                    tutorList.filter(filterSubject);
+                    String subjectToFilter = ui.inputSubjectToFilter();
+                    ListInterface<Tutors> filteredTutors = new LinkedList<>(); // Create a new list to store filtered tutors
+
+                    // Iterate through the original tutorList and add tutors with a matching subject to the filteredTutors list
+                    for (int i = 1; i <= tutorList.getNumberOfEntries(); i++) {
+                        Tutors tutorF = tutorList.getEntry(i);
+                        if (tutorF.getSubject().equalsIgnoreCase(subjectToFilter)) {
+                            filteredTutors.add(tutorF);
+                        }
+                    }
+
+                    if (filteredTutors.isEmpty()) {
+                        System.out.println("No tutors found for the subject: " + subjectToFilter);
+                    } else {
+                        System.out.println("Tutors teaching " + subjectToFilter + ":");
+                        for (int i = 1; i <= filteredTutors.getNumberOfEntries(); i++) {
+                            Tutors tutorR = filteredTutors.getEntry(i);
+                            System.out.println(tutorR);
+                        }
+                    }
                     break;
                 case 7:
                     ui.generateSalaryReport(tutorList);

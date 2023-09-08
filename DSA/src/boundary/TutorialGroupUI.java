@@ -10,11 +10,11 @@ import java.util.Scanner;
 
 /**
  *
- * @author howei
+ * @author howei young
  */
 public class TutorialGroupUI {
 
-       private final Scanner scanner;
+    private final Scanner scanner;
 
     public TutorialGroupUI() {
         // Initialize the scanner in the constructor
@@ -32,44 +32,48 @@ public class TutorialGroupUI {
         System.out.println("6. Filter ");
         System.out.println("7. Report ");
         System.out.println("0. Quit");
-
         System.out.print("Enter your choice (1-7, or 0 to quit): ");
         int choice = scanner.nextInt();
         scanner.nextLine(); // Consume the newline character
-
         return choice;
     }
 
     //display list
-    public void foundStudent(String string){
+    public void foundStudent(String string) {
         System.out.println(string);
     }
+
     public void listReport(String outputStr, int totalNum, String record) {
         System.out.println("     ------------------"
-                         + "          REPORT       "
+                + "          REPORT       "
                 + "     ------------------"
                 + "\n=== List of Groups === \n"
                 + "Tutorial Group   Max.No           Current.No\n" + outputStr + "\n Total student : " + totalNum + ""
-                        + "\n\n === Record Tutorial group === "
-                        + "\n Action             Content"
-                        + "\n" + record);
+                + "\n\n === Record Tutorial group === "
+                + "\n Action             Content"
+                + "\n" + record);
     }
 
-    public void addHeader(){
+    public void addHeader() {
         System.out.println("\n=== Add Student === \n");
     }
-    public void removeHeader(){
+
+    public void removeHeader() {
         System.out.println("\n=== Remove Student === \n");
     }
-        public void changeHeader(){
+
+    public void changeHeader() {
         System.out.println("\n=== Change Group === \n");
     }
-                public void findHeader(){
+
+    public void findHeader() {
         System.out.println("\n=== Change Group === \n");
     }
-       public void filterHeader(){
+
+    public void filterHeader() {
         System.out.println("\n=== Filter === \n");
-    }         
+    }
+
     public void listGroups(String outputStr) {
         System.out.println("\n=== List of Groups === \n"
                 + "Tutorial Group   Max.No\n" + outputStr);
@@ -81,7 +85,6 @@ public class TutorialGroupUI {
     }
 
     public void headerListStudent(int noGroup) {
-
         String message = String.format("\n=== List of Tutorial Group %d ===\n"
                 + "No.Group Student Name        E-mail\n", noGroup);
         System.out.println(message);
@@ -96,7 +99,6 @@ public class TutorialGroupUI {
         System.out.println("=== Filter Menu ===");
         System.out.println("1) Filter by Tutorial Group");
         System.out.println("2) Filter by Student");
-
         System.out.print("Enter your choice (1 or 2): ");
         int choice = scanner.nextInt();
         scanner.nextLine(); // Consume the newline character
@@ -105,7 +107,6 @@ public class TutorialGroupUI {
     }
 
     public int chooseGroup(int maxGroup) {
-
         System.out.println("Tutorial Group");
         for (int i = 1; i <= maxGroup; i++) {
             System.out.printf("%d. Group %d\n", i, i);
@@ -128,13 +129,10 @@ public class TutorialGroupUI {
     public String inputTutorialGroupName() {
         String name = null;
         boolean validInput = false;
-
         while (!validInput) {
             try {
                 System.out.print("Enter full student Name: ");
                 name = scanner.nextLine();
-
-                // Validate the input (customize this part based on your requirements)
                 if (!name.isEmpty() && name.matches("^[a-zA-Z\\s]+$") && name.length() >= 3) {
                     validInput = true;
                 } else {
@@ -149,31 +147,18 @@ public class TutorialGroupUI {
     }
 
     private static String generateEmail(String studentName) {
-        // Remove spaces and convert the student's name to lowercase
         String formattedName = studentName.replaceAll("\\s+", "").toLowerCase();
-
-        // Define a domain name (e.g., "example.com")
         String domainName = "example.com";
-
-        // Create the email by concatenating the formatted name and domain name
         String email = formattedName + "@" + domainName;
-
         return email;
     }
 
-//    private int inputTutorialGroupNumber() {
-//        System.out.print("Enter student group: ");
-//        int number = scanner.nextInt();
-//        return number;
-//    }
     public int removeStudent() {
         boolean validInput = false;
         int num = 0;
-
         while (!validInput) {
             System.out.println("Enter which line to remove student base on above list: ");
             num = scanner.nextInt();
-
         }
         return num;
     }
@@ -184,10 +169,8 @@ public class TutorialGroupUI {
         int currentGroup = toChange.getNumber();
         boolean inputValid = false;
         int noChange = 0;
-
         System.out.println("To change " + name + " from group" + currentGroup
                 + "\nEnter Which group to change");
-
         while (!inputValid) {
             try {
                 noChange = scanner.nextInt();
@@ -202,7 +185,6 @@ public class TutorialGroupUI {
             }
         }
         return noChange;
-
     }
 
     public void displayChangeGroup(TutorialGroup changed, int pInt) {
@@ -274,8 +256,6 @@ public class TutorialGroupUI {
                 System.out.println("Invalid input. Please enter 'Y' to confirm or 'N' to cancel.");
                 break;
         }
-
         return confirm;
-
     }
 }

@@ -123,17 +123,7 @@ public class LinkedList<T> implements ListInterface<T> {
     }
 
     
-    @Override
-    public T find(String tutorName) {
-        Node current = firstNode;
-        while (current != null) {
-            if (((Tutors) current.data).getName().equals(tutorName)) {
-                return current.data;
-            }
-            current = current.next;
-        }
-        return null;
-    }
+ 
 
     
     @Override
@@ -158,16 +148,7 @@ public class LinkedList<T> implements ListInterface<T> {
     }
 }
 
-    @Override
-    public void filter(String criteria) {
-        Node current = firstNode;
-        while (current != null) {
-            if (((Tutors) current.data).getSubject().equals(criteria)) {
-                System.out.println(current.data);
-            }
-            current = current.next;
-        }
-    }
+    
     
     @Override
     public boolean contains(T anEntry) {
@@ -205,14 +186,18 @@ public class LinkedList<T> implements ListInterface<T> {
         return outputStr;
     }
 
-    @Override
-    public T find(Predicate<T> predicate) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
+    
+    
     @Override
     public void filter(Predicate<T> predicate) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Node current = firstNode;
+        while (current != null) {
+            if (predicate.test(current.data)) {
+                System.out.println(current.data);
+            }
+            current = current.next;
+        }
     }
 
     @Override
@@ -252,6 +237,11 @@ public class LinkedList<T> implements ListInterface<T> {
 
     @Override
     public void bubbleSort(int[] entry) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public T find(Predicate<T> predicate) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

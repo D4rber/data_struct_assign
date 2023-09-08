@@ -9,30 +9,40 @@ import java.util.Scanner;
  *
  * @author Tongkitming
  */
-
 public class TutorManagementUI {
 
-   Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
+
+   
 
     public int getSelection() {
 
-        System.out.println("\nTutor Management System");
-        System.out.println("1. Add Tutor");
-        System.out.println("2. Remove Tutor");
-        System.out.println("3. Find Tutor");
-        System.out.println("4. Amend Tutor Details");
-        System.out.println("5. List All Tutors");
-        System.out.println("6. Filter Tutors by Subject");
-        System.out.println("7. Generate Report");
-        System.out.println("8. Undo to add the tutor");
-        System.out.println("9. Exit");
+        while (true) {
+            System.out.println("\nTutor Management System");
+            System.out.println("1. Add Tutor");
+            System.out.println("2. Remove Tutor");
+            System.out.println("3. Find Tutor");
+            System.out.println("4. Amend Tutor Details");
+            System.out.println("5. List All Tutors");
+            System.out.println("6. Filter Tutors by Subject");
+            System.out.println("7. Generate Report");
+            System.out.println("8. Undo to add the tutor");
+            System.out.println("9. Exit");
 
-        System.out.print("Select an option: ");
+            System.out.print("Select an option: ");
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+              
+                return choice;
+            } else {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                scanner.nextLine(); 
+            }
+ 
+        }
 
-        return choice;
     }
 
     public int update() {
@@ -152,5 +162,10 @@ public class TutorManagementUI {
         System.out.println("Total Tutors: " + numTutors);
         System.out.println("Total Salary: " + totalSalary);
         System.out.println("Average Salary: " + averageSalary);
+    }
+
+    public String inputSubjectToFilter() {
+        System.out.print("Enter the subject to filter: ");
+        return scanner.nextLine().trim(); // Capture and return user input, removing leading/trailing whitespace
     }
 }
