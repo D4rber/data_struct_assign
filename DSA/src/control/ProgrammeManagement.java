@@ -15,20 +15,22 @@ import entity.Programme;
 import entity.TutorialGroup;
 import boundary.ProgrammeMaintenanceUI;
 import java.util.Iterator;
+import dao.ProgrammeInitialize;
 
 public class ProgrammeManagement {
 
-    private ListInterface<Programme> programmeList = new ArrayList<>();
+    static ListInterface<Programme> programmeList = new ArrayList<>();
     private ListInterface<TutorialGroup> tutorialGroupList = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
     private ProgrammeMaintenanceUI programmeUI = new ProgrammeMaintenanceUI();
-
+    ProgrammeInitialize programmeInitialize = new ProgrammeInitialize();
     public void programmeManagement() {
-        tutorialGroupList.add(new TutorialGroup("G1", 23));
-        tutorialGroupList.add(new TutorialGroup("G2", 25));
-        programmeList.add(new Programme("DCS", "Diploma in Computer Science", 32));
-        programmeList.add(new Programme("RDS", "Bachelor Degree in Data Science", 31, new ArrayList<>()));
-        programmeList.getEntry(1).setTutorialGroups(tutorialGroupList);
+         
+//        tutorialGroupList.add(new TutorialGroup("G1", 23));
+//        tutorialGroupList.add(new TutorialGroup("G2", 25));
+//        programmeList.add(new Programme("DCS", "Diploma in Computer Science", 32));
+//        programmeList.add(new Programme("RDS", "Bachelor Degree in Data Science", 31, new ArrayList<>()));
+//        programmeList.getEntry(1).setTutorialGroups(tutorialGroupList);
         String choice;
         do {
             choice = programmeUI.getMenuChoice();
@@ -149,7 +151,7 @@ public class ProgrammeManagement {
         }
     }
 
-    private void listAllProgramme() {
+    public void listAllProgramme() {
         programmeUI.listAllProgrammeUI();
         for (int i = 0; i < programmeList.getNumberOfEntries(); i++) {
             programmeUI.displayProgramme(programmeList.getEntry(i + 1));

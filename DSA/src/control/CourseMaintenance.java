@@ -12,15 +12,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import utility.MessageUI;
 import java.util.Scanner;
+import control.ProgrammeManagement;
 
 /**
  *
  * @author YU YUNG JUN
  */
 public class CourseMaintenance {
-
+    
     private ListInterface<Course> courseList = new ArrayList<>();
-    private ListInterface<Programme> programmeList = new ArrayList<>();
+    private ProgrammeManagement programmeManagement = new ProgrammeManagement();
+    private ListInterface<Programme> programmeList = programmeManagement.programmeList;
     private CourseMaintenanceUI courseUI = new CourseMaintenanceUI();
     private ProgrammeMaintenanceUI programmeUI = new ProgrammeMaintenanceUI();
     private Scanner scanner = new Scanner(System.in);
@@ -169,37 +171,34 @@ public class CourseMaintenance {
         Course cr = courseList.getEntry(new Course(cCode));
         if (cr != null) {
 
+            System.out.println("\n");
+            for (int i = 0; i < programmeList.getNumberOfEntries(); i++) {
+                programmeUI.displayProgramme(programmeList.getEntry(i + 1));
+            }
+            System.out.println("\n");
             String pCode = programmeUI.aProgramme();
             Programme p = programmeList.getEntry(new Programme(pCode));
+            
+            
 
             if (p == null) {
-                //if programme not found
-                //ask user to enter new programme  details
-                //assign new programme to programme list
-                //add to course
-                Programme programmeAdd = programmeUI.addProgramme(pCode);
-                //Course cr;
-                do {
-                    cr = courseList.getEntry(new Course(cCode));
-                } while (cr == null);
-
-                //assign programme to course
-                //--- this is the reason why ADT need to be inside ENTITY
-                cr.addProgrammeToCourse(programmeAdd);
-                MessageUI.displayProgAddedMessage();
+                programmeUI.displayFailToFindProgramme();
             } else {
-
-                do {
-                    cr = courseList.getEntry(new Course(cCode));
-                } while (cr == null);
-
-                //assign programme to course
-                //--- this is the reason why ADT need to be inside ENTITY
+                cr = courseList.getEntry(new Course(cCode));
                 cr.addProgrammeToCourse(p);
                 MessageUI.displayProgAddedMessage();
+//                do {
+//                    cr = courseList.getEntry(new Course(cCode));
+//                } while (cr == null);
+//
+//                //assign programme to course
+//                //--- this is the reason why ADT need to be inside ENTITY
+//                cr.addProgrammeToCourse(p);
+//                MessageUI.displayProgAddedMessage();
             }
+        
 
-        } else {
+        }else{
             MessageUI.displayNoCourseFoundMessage();
         }
 
